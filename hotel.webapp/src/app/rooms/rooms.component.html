@@ -1,21 +1,26 @@
-<p>Rooms</p>
+<p>Kamers</p>
+
+<div *ngIf="isLoadingResults" class="spinner-border" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+
+<a [routerLink]="['/room/add']">Add <span class="glyphicon glyphicon-plus"></span> </a>
 
 <table class="table">
-    <tr>
-      <th>
-        Kamer Nummer
-      </th>
-      <th>
-        Capaciteit
-      </th>
-    </tr>
-    <tr *ngFor="let room of rooms">
-      <td>
-        {{room.name}}
-      </td>
-      <td>
-        {{room.capacity}}
-      </td>
-    </tr>
-  </table>
-  
+  <tr>
+    <th>
+      Kamer Nummer
+    </th>
+    <th>
+      Capaciteit
+    </th>
+  </tr>
+  <tr *ngFor="let room of rooms">
+    <td>
+      {{room.name}}
+    </td>
+    <td>
+      {{room.capacity}}
+    </td>
+  </tr>
+</table>

@@ -8,19 +8,21 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+import { RoomAddComponent } from './room-add/room-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     RoomsComponent,
+    RoomAddComponent,
     PageNotFoundComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
