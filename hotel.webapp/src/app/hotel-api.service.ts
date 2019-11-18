@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HotelApiService {
  
-  private API_SERVER = "http://localhost:8080";
+  private API_SERVER = "http://localhost:8082";
 
   constructor(private httpClient: HttpClient) { }
 
