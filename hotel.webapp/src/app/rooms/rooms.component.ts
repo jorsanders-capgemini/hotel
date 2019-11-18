@@ -9,13 +9,20 @@ import { HotelApiService } from '../hotel-api.service';
 export class RoomsComponent implements OnInit {
 
   private rooms = []
+  private isLoadingResults = true;
 
-  constructor(private hotelApiAService: HotelApiService){}
+  constructor(private hotelApiAService: HotelApiService) { }
 
   ngOnInit() {
-    this.hotelApiAService.sendGetRequest('rooms').subscribe((data: any[])=>{
-      this.rooms = data;
-    })
+    this.hotelApiAService.getRooms()
+      .subscribe(res => {
+        this.rooms = res;
+        console.log(this.rooms);
+        this.isLoadingResults = false;
+      }, err => {
+        console.log(err);
+        this.isLoadingResults = false;
+      });
   }
 
 }
