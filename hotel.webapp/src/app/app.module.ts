@@ -7,7 +7,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
-import { RoomAddComponent } from './components/room-add/room-add.component';
 import { RoomsComponent } from './components/rooms/rooms.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -30,7 +29,6 @@ import { MatProgressSpinnerModule, MatTableDataSource } from '@angular/material'
     AppComponent,
     NavigationComponent,
     RoomsComponent,
-    RoomAddComponent,
     PageNotFoundComponent,
     HomeComponent,
     AddDialogComponent,
