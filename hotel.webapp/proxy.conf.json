@@ -1,10 +1,10 @@
 {
-    "/api": {
+    "/hotelapi": {
         "target": "http://localhost:8082/api",
         "secure": false,
         "changeOrigin": "true",
         "pathRewrite": {
-            "^/api": ""
+            "^/hotelapi": ""
         } 
     }
 }

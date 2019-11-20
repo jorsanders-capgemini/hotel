@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class HotelApiService {
-  private readonly API_URL = '/api';
+  private readonly API_URL = 'hotelapi';
 
   dataChange: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
   // Temporarily stores data from dialogs
