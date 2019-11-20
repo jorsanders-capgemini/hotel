@@ -22,7 +22,6 @@ public class RoomController {
         return "Saved";
     }
 
-    @CrossOrigin
     @GetMapping("api/rooms")
     @ResponseBody
     public Iterable<Room> getIngredients() {
