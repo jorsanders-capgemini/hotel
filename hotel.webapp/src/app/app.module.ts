@@ -22,7 +22,10 @@ import { HotelApiService } from './services/hotel-api.service';
 import { AddDialogComponent } from './components/dialogs/add/add.dialog.component';
 import { EditDialogComponent } from './components/dialogs/edit/edit.dialog.component';
 import { DeleteDialogComponent } from './components/dialogs/delete/delete.dialog.component';
-import { MatProgressSpinnerModule, MatTableDataSource } from '@angular/material';
+import {
+  MatProgressSpinnerModule,
+  MatTableDataSource
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -41,8 +44,6 @@ import { MatProgressSpinnerModule, MatTableDataSource } from '@angular/material'
     HttpClientModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatSortModule,
-    MatTableModule,
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
@@ -60,18 +61,14 @@ import { MatProgressSpinnerModule, MatTableDataSource } from '@angular/material'
     MatIconModule,
     MatSortModule,
     MatTableModule,
-    MatToolbarModule,
+    MatToolbarModule
   ],
   entryComponents: [
     AddDialogComponent,
     EditDialogComponent,
     DeleteDialogComponent
   ],
-  providers: [
-    HotelApiService
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -6,7 +6,7 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', redirectTo: 'rooms', pathMatch: 'full'},
   {path: 'rooms', component: RoomsComponent},
   {path: '**', component: PageNotFoundComponent},
 ];

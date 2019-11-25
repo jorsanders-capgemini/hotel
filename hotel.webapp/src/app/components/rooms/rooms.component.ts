@@ -16,38 +16,40 @@ import { fromEvent } from 'rxjs';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss']
 })
-
 export class RoomsComponent implements OnInit {
-  displayedColumns = ['id', 'name', 'capacity'];
-  hotelApiService: HotelApiService | null;
-  dataSource: RoomsDataSource | null;
+  public readonly displayedColumns = ['id', 'name', 'capacity'];
+  dataSource: RoomsDataSource;
   index: number;
   id: number;
 
-  constructor(public httpClient: HttpClient,
+  constructor(
+    public httpClient: HttpClient,
     public matDialog: MatDialog,
-    public dataService: HotelApiService) { }
+    private readonly hotelApiService: HotelApiService
+  ) {}
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild('filter', { static: true }) filter: ElementRef;
 
-  ngOnInit() {
+  public ngOnInit() {
     this.loadData();
   }
 
-  refresh() {
+  public refresh() {
     this.loadData();
   }
 
-  addNew(issue: Room) {
+  public addNew(issue: Room) {
     const dialogRef = this.matDialog.open(AddDialogComponent, {
       data: { issue: issue }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.hotelApiService.dataChange.value.push(this.dataService.getDialogData());
+        this.hotelApiService.dataChange.value.push(
+          this.hotelApiService.getDialogData()
+        );
         this.refreshTable();
       }
     });
@@ -56,13 +58,17 @@ export class RoomsComponent implements OnInit {
   startEdit(id: number, name: string, capacity: number) {
     this.id = id;
     const dialogRef = this.matDialog.open(EditDialogComponent, {
-      data: { id: id, name: name, capacity: capacity }
+      data: { id, name, capacity: capacity }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.hotelApiService.dataChange.value.findIndex(x => x.id === this.id);
-        this.hotelApiService.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        const foundIndex = this.hotelApiService.dataChange.value.findIndex(
+          x => x.id === this.id
+        );
+        this.hotelApiService.dataChange.value[
+          foundIndex
+        ] = this.hotelApiService.getDialogData();
         this.refreshTable();
       }
     });
@@ -77,13 +83,14 @@ export class RoomsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.hotelApiService.dataChange.value.findIndex(x => x.id === this.id);
+        const foundIndex = this.hotelApiService.dataChange.value.findIndex(
+          x => x.id === this.id
+        );
         this.hotelApiService.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
       }
     });
   }
-
 
   private refreshTable() {
     // Refreshing table using paginator
@@ -91,14 +98,16 @@ export class RoomsComponent implements OnInit {
   }
 
   public loadData() {
-    this.hotelApiService = new HotelApiService(this.httpClient);
-    this.dataSource = new RoomsDataSource(this.hotelApiService, this.paginator, this.sort);
-    fromEvent(this.filter.nativeElement, 'keyup')
-      .subscribe(() => {
-        if (!this.dataSource) {
-          return;
-        }
-        this.dataSource.filter = this.filter.nativeElement.value;
-      });
+    this.dataSource = new RoomsDataSource(
+      this.hotelApiService,
+      this.paginator,
+      this.sort
+    );
+    fromEvent(this.filter.nativeElement, 'keyup').subscribe(() => {
+      if (!this.dataSource) {
+        return;
+      }
+      this.dataSource.filter = this.filter.nativeElement.value;
+    });
   }
 }

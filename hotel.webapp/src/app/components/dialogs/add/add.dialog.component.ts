@@ -6,14 +6,15 @@ import { Room } from 'src/app/models/room';
 
 @Component({
   selector: 'app-add.dialog',
-  templateUrl: '../../dialogs/add/add.dialog.html',
-  styleUrls: ['../../dialogs/add/add.dialog.css']
+  templateUrl: './add.dialog.html',
+  styleUrls: ['./add.dialog.css']
 })
-
 export class AddDialogComponent {
-  constructor(public dialogRef: MatDialogRef<AddDialogComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<AddDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Room,
-    public dataService: HotelApiService) { }
+    public dataService: HotelApiService
+  ) {}
 
   formControl = new FormControl('', [
     Validators.required
@@ -21,9 +22,11 @@ export class AddDialogComponent {
   ]);
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Not a valid email' :
-        '';
+    return this.formControl.hasError('required')
+      ? 'Required field'
+      : this.formControl.hasError('email')
+      ? 'Not a valid email'
+      : '';
   }
 
   submit() {

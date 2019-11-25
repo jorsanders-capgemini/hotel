@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  springapi:
+    container_name: "${PROJECTNAME}-openjdk-${OPENJDKVERSION}"
+    build:
+      context: "./dockerfiles/openjdk"
+      dockerfile: "Dockerfile"
+      args:
+        OPENJDKVERSION: "${OPENJDKVERSION}"
+    volumes:
+      - "./hotel.api:/app"
+    working_dir: '/app'
+    entrypoint: 'mvn package && mvn exec:java -Dexec.mainClass="com.jor.hotel.HotelApplication"'
+    depends_on:
+      - 'mysql'
+    networks:
+      static-network:
+        ipv4_address: "${IPV4ADDRESS}.5"
+  #angular
+  mysql:
+    container_name: "${PROJECTNAME}-mysql-${MYSQLVERSION}"
+    image: "mysql:${MYSQLVERSION}"
+    volumes:
+      - "./mysql-${MYSQLVERSION}:/var/lib/mysql"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${ROOTPASS}"
+      - "MYSQL_DATABASE=${DBNAME}"
+      - "MYSQL_USER=${DBUSER}"
+      - "MYSQL_PASSWORD=${DBPASS}"
+    networks:
+      static-network:
+        ipv4_address: "${IPV4ADDRESS}.7"
+networks:
+  static-network:
+    name: "${PROJECTNAME}-static-network"
+    ipam:
+      config:
+        - subnet: "${IPV4ADDRESS}.0/28"
