@@ -12,7 +12,7 @@ export class RoomsService {
   private readonly apiRooms$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
 
   public get rooms$(): Observable<Room[]> {
-    this.hotelApiService.getAllRooms();
+    this.apiRooms$.next(this.hotelApiService.getAllRooms());
     return this.apiRooms$.asObservable();
   }
 }

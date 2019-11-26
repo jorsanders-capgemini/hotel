@@ -11,7 +11,7 @@ import { RoomsService } from 'src/app/services/rooms.service';
 export class RoomsComponent implements OnInit {
   public readonly displayedColumns = ['id', 'name', 'capacity'];
 
-  private rooms$: Observable<Room[]>;
+  public rooms$: Observable<Room[]>;
 
   constructor(private readonly roomsService: RoomsService) {}
 
