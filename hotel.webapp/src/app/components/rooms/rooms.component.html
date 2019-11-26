@@ -1,14 +1,19 @@
 <p>Kamers</p>
-{{rooms$ | async | json}}
 <table class="table">
   <tr>
     <th>
       Naam
     </th>
+    <th>
+      Capaciteit
+    </th>
   </tr>
   <tr *ngFor="let room: of rooms$ | async">
     <td>
       {{ room.name }}
+    </td>
+    <td>
+      {{ room.capacity }}
     </td>
   </tr>
 </table>
