@@ -9,49 +9,21 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 export class HotelApiService {
   private readonly API_URL = 'hotelapi';
 
-  private readonly dataChange$: BehaviorSubject<Room[]> = new BehaviorSubject<
-    Room[]
-  >([]);
-
-  public get rooms$(): Observable<Room[]> {
-    return this.dataChange$.asObservable();
-  }
-  // Temporarily stores data from dialogs
-  dialogData: any;
-
   constructor(private httpClient: HttpClient) {}
 
-  get data(): Room[] {
-    return this.dataChange$.value;
+  public getAllRooms(): void {
+    return this.httpClient.get<Room[]>(this.API_URL + '/rooms');
   }
 
-  getDialogData() {
-    return this.dialogData;
+  addRoom(room: Room): void {
+    console.log(room);
   }
 
-  /** CRUD METHODS */
-  getAllIssues(): void {
-    this.httpClient.get<Room[]>(this.API_URL + '/rooms').subscribe(
-      data => {
-        console.log(data);
-        this.dataChange$.next(data);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.name + ' ' + error.message);
-      }
-    );
+  updateRoom(room: Room): void {
+    console.log(room);
   }
 
-  // DEMO ONLY, you can find working methods below
-  addIssue(issue: Room): void {
-    this.dialogData = issue;
-  }
-
-  updateIssue(issue: Room): void {
-    this.dialogData = issue;
-  }
-
-  deleteIssue(id: number): void {
+  deleteRoom(id: number): void {
     console.log(id);
   }
 }
