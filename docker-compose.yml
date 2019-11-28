@@ -28,8 +28,14 @@ services:
       - "MYSQL_DATABASE=${DBNAME}"
       - "MYSQL_USER=${DBUSER}"
       - "MYSQL_PASSWORD=${DBPASS}"
+    ports:
+      - "3306:3306"
     networks:
       static-network:
         ipv4_address: "${IPV4ADDRESS}.7"
 networks:
   static-network:
+    name: "${PROJECTNAME}-static-network"
+    ipam:
+      config:
+        - subnet: "${IPV4ADDRESS}.0/28"
