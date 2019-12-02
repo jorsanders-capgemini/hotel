@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Room } from 'src/app/models/room';
 import { Observable } from 'rxjs';
+import { Room } from 'src/app/models/room';
 import { RoomsService } from 'src/app/services/rooms.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.scss']
+  selector: 'app-room-list',
+  templateUrl: './room-list.component.html',
+  styleUrls: ['./room-list.component.scss']
 })
-export class RoomsComponent implements OnInit {
-  public readonly displayedColumns = ['id', 'name', 'capacity'];
+export class RoomListComponent implements OnInit {
+
 
   public rooms$: Observable<Room[]>;
 
@@ -22,4 +22,5 @@ export class RoomsComponent implements OnInit {
   public loadData() {
     this.rooms$ = this.roomsService.rooms$;
   }
+
 }
