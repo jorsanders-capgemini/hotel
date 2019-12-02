@@ -12,13 +12,7 @@ import { RoomCreateComponent } from './components/rooms/room-create/room-create.
 import { RoomListComponent } from './components/rooms/room-list/room-list.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationComponent,
-    PageNotFoundComponent,
-    RoomCreateComponent,
-    RoomListComponent
-  ],
+  declarations: [AppComponent, NavigationComponent, PageNotFoundComponent, RoomCreateComponent, RoomListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +24,7 @@ import { RoomListComponent } from './components/rooms/room-list/room-list.compon
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

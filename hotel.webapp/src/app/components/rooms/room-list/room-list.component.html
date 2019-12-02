@@ -1,19 +1,24 @@
-<p>Kamers</p>
-<table class="table">
-  <tr>
-    <th>
-      Naam
-    </th>
-    <th>
-      Capaciteit
-    </th>
-  </tr>
-  <tr *ngFor="let room: of rooms$ | async">
-    <td>
-      {{ room.name }}
-    </td>
-    <td>
-      {{ room.capacity }}
-    </td>
-  </tr>
-</table>
+<div class="row">
+  <p>Kamers</p>
+</div>
+
+<div class="row">
+  <table class="table">
+    <tr>
+      <th>
+        Naam
+      </th>
+      <th>
+        Capaciteit
+      </th>
+    </tr>
+    <tr *ngFor="let room: of rooms$ | async">
+      <td>
+        {{ room.name }}
+      </td>
+      <td>
+        {{ room.capacity }}
+      </td>
+    </tr>
+  </table>
+</div>

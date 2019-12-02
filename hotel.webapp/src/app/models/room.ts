@@ -1,5 +1,3 @@
 export class Room {
-  id: number;
-  name: string;
-  capacity: number;
+  constructor(id: number, name: string, capacity: number) {}
 }
