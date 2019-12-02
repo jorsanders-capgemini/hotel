@@ -22,7 +22,7 @@ public class RoomController {
     private Room getRoomById(long id) {
         Optional<Room> roomOptional = roomService.getById(id);
 
-        if (roomOptional.isEmpty()) {
+        if (!roomOptional.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("Room with %d does not exist", id));
         }
 

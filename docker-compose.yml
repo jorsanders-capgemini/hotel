@@ -1,23 +1,25 @@
 version: '3.7'
 
 services:
-#  springapi:
-#    container_name: "${PROJECTNAME}-openjdk-${OPENJDKVERSION}"
-#    build:
-#      context: "./dockerfiles/openjdk"
-#      dockerfile: "Dockerfile"
-#      args:
-#        OPENJDKVERSION: "${OPENJDKVERSION}"
-#    volumes:
-#      - "./hotel.api:/app"
-#    working_dir: '/app'
-#    entrypoint: 'mvn package && mvn exec:java -Dexec.mainClass="com.jor.hotel.HotelApplication"'
-#    depends_on:
-#      - 'mysql'
-#    networks:
-#      static-network:
-#        ipv4_address: "${IPV4ADDRESS}.5"
-  #angular
+  springapi:
+    container_name: "${PROJECTNAME}-openjdk-${OPENJDKVERSION}"
+    build:
+      context: "./dockerfiles/openjdk"
+      dockerfile: "Dockerfile"
+      args:
+        OPENJDKVERSION: "${OPENJDKVERSION}"
+    volumes:
+      - "./hotel.api:/app"
+    working_dir: '/app'
+    entrypoint: 'java -jar target/hotel-0.0.1.jar com.jor.hotel.HotelApplication'
+    ports:
+      - "8082:8082"
+      - "5005:5005"
+    depends_on:
+      - 'mysql'
+    networks:
+      static-network:
+        ipv4_address: "${IPV4ADDRESS}.5"
   mysql:
     container_name: "${PROJECTNAME}-mysql-${MYSQLVERSION}"
     image: "mysql:${MYSQLVERSION}"
