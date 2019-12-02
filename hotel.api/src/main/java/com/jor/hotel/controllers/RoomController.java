@@ -70,7 +70,7 @@ public class RoomController {
                                                    @RequestParam(required = false) @Valid boolean exactMatch) {
         Iterable<Room> rooms;
 
-        if(!name.isEmpty()){
+        if(name != null && !name.isEmpty()){
             rooms = roomService.findByName(name, ignoreCase, exactMatch);
         }else{
             rooms = roomService.getAll();
