@@ -9,8 +9,6 @@ import { RoomsService } from 'src/app/services/rooms.service';
   styleUrls: ['./room-list.component.scss']
 })
 export class RoomListComponent implements OnInit {
-
-
   public rooms$: Observable<Room[]>;
 
   constructor(private readonly roomsService: RoomsService) {}
@@ -23,4 +21,9 @@ export class RoomListComponent implements OnInit {
     this.rooms$ = this.roomsService.rooms$;
   }
 
+  public onDelete(id: number) {
+    this.roomsService.deleteRoom(id).then(() => {
+      this.loadData();
+    });
+  }
 }

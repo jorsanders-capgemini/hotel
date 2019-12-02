@@ -15,7 +15,6 @@ export class RoomsService {
   private readonly apiRooms$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
 
   public get rooms$(): Observable<Room[]> {
-    // TODO: don't call API every time
     this.getRoomsFromAPi();
     return this.apiRooms$.asObservable();
   }
@@ -26,15 +25,15 @@ export class RoomsService {
     });
   }
 
-  addRoom(room: Room): void {
-    console.log(room);
+  public createRoom(room: Room): Promise<Room> {
+    return this.hotelApiService.doPostRequest<Room>('/rooms', room).toPromise<Room>();
   }
 
   updateRoom(room: Room): void {
     console.log(room);
   }
 
-  deleteRoom(id: number): void {
-    console.log(id);
+  deleteRoom(id: number): Promise<any> {
+    return this.hotelApiService.doDeleteRequest('/rooms/' + id).toPromise();
   }
 }

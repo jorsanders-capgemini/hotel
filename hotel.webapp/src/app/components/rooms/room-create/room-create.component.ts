@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import { Room } from 'src/app/models/room';
+import { RoomsService } from 'src/app/services/rooms.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-room-create',
@@ -12,10 +15,13 @@ export class RoomCreateComponent {
     capacity: ['', [Validators.min(1), Validators.required]]
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private roomsService: RoomsService, private router: Router) {}
 
   onSubmit() {
-    console.log(this.roomForm.value);
+    const room = new Room().deserialize(this.roomForm.value);
+    this.roomsService.createRoom(room).then(() => {
+      this.router.navigate(['/kamers']);
+    });
   }
 
   get name() {

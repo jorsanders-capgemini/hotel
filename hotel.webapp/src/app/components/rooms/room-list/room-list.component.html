@@ -11,6 +11,9 @@
       <th>
         Capaciteit
       </th>
+      <th>
+        Acties
+      </th>
     </tr>
     <tr *ngFor="let room: of rooms$ | async">
       <td>
@@ -18,6 +21,9 @@
       </td>
       <td>
         {{ room.capacity }}
+      </td>
+      <td>
+        <button type="button" (click)="onDelete(room.id)" class="btn btn-danger">Verwijder</button>
       </td>
     </tr>
   </table>
