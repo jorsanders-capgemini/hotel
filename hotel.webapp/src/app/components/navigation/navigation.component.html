@@ -15,17 +15,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/kamers']">
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/kamers']">
           Kamers
         </a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link"
-          href="#"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }"
-          [routerLink]="['/kamers', 'nieuw']"
+        <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/kamers', 'nieuw']"
           >Voeg Kamer Toe</a
         >
       </li>
