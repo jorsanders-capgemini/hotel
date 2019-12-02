@@ -1,5 +1,7 @@
 package com.jor.hotel.models;
 
+import com.jor.hotel.models.dtos.roomDto;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,25 +11,42 @@ import javax.persistence.Id;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private long id;
 
-    private Integer capacity;
+    private int capacity;
 
     private String name;
 
-    public Integer getId() {
+    public Room() {
+    }
+
+    public Room(roomDto roomDto) {
+        this.mapDto(roomDto);
+    }
+
+    public Room(long id, roomDto roomDto) {
+        this.id = id;
+        this.mapDto(roomDto);
+    }
+
+    public void mapDto(roomDto roomDto) {
+        this.name = roomDto.getName();
+        this.capacity = roomDto.getCapacity();
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Integer getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
