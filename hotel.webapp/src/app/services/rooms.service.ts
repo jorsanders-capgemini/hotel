@@ -15,8 +15,6 @@ export class RoomsService {
     return this.apiRooms$.asObservable();
   }
 
-  private readonly API_URL = 'hotelapi';
-
   private readonly apiRooms$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
 
   private getRoomsFromAPi(): void {

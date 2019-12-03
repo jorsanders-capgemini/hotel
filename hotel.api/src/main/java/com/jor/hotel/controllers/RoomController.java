@@ -3,6 +3,7 @@ package com.jor.hotel.controllers;
 import com.jor.hotel.models.Room;
 import com.jor.hotel.models.dtos.roomDto;
 import com.jor.hotel.services.RoomService;
+import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -67,12 +69,13 @@ public class RoomController {
     @GetMapping("rooms")
     public ResponseEntity<Iterable<Room>> getRooms(@RequestParam(required = false) String name,
                                                    @RequestParam(required = false, defaultValue = "true") @Valid boolean ignoreCase,
-                                                   @RequestParam(required = false) @Valid boolean exactMatch) {
+                                                   @RequestParam(required = false) @Valid boolean exactMatch,
+                                                   @RequestHeader Map<String, String> headers) {
         Iterable<Room> rooms;
 
-        if(name != null && !name.isEmpty()){
+        if (name != null && !name.isEmpty()) {
             rooms = roomService.findByName(name, ignoreCase, exactMatch);
-        }else{
+        } else {
             rooms = roomService.getAll();
         }
 

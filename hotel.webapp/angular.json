@@ -63,8 +63,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "hotel:build",
-            "port": 8081,
-            "proxyConfig": "proxy.conf.json"
+            "port": 8081
           },
           "configurations": {
             "production": {
