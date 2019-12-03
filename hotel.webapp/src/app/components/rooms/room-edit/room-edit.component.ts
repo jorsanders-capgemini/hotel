@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from 'src/app/models/room';
 import { RoomsService } from 'src/app/services/rooms.service';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { RoomForm } from '../form';
+import { FormGroup } from '@angular/forms';
+import { form } from '../form';
 
 @Component({
   selector: 'app-room-edit',
@@ -13,18 +13,21 @@ import { RoomForm } from '../form';
 })
 export class RoomEditComponent implements OnInit {
   private routeSub: Subscription;
-  private roomForm: any;
+  private form: FormGroup;
 
   constructor(private router: Router, private route: ActivatedRoute, private roomsService: RoomsService) {
-    this.roomForm = RoomForm;
+    this.form = form;
   }
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
-      this.roomForm.id.setValue(params.id);
+      this.form.get('id').setValue(params.id);
+      console.log(this.form);
+      console.log(this.form.get('id').value);
+      console.log(this.form.value);
       this.roomsService.getRoom(params.id).subscribe(room => {
-        this.roomForm.name.setValue(room.name);
-        this.roomForm.capacity.setValue(room.capacity);
+        this.form.get('name').setValue(room.name);
+        this.form.get('capacity').setValue(room.capacity);
       });
     });
 
@@ -32,7 +35,7 @@ export class RoomEditComponent implements OnInit {
   }
 
   onSubmit() {
-    const room = new Room().deserialize(this.roomForm.value);
+    const room = new Room().deserialize(form.value);
     this.roomsService.updateRoom(room).subscribe(() => {
       this.router.navigate(['/kamers']);
     });
