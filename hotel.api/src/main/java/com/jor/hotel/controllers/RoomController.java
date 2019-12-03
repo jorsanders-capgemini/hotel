@@ -1,9 +1,8 @@
 package com.jor.hotel.controllers;
 
 import com.jor.hotel.models.Room;
-import com.jor.hotel.models.dtos.roomDto;
+import com.jor.hotel.models.dtos.RoomDto;
 import com.jor.hotel.services.RoomService;
-import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import java.util.Map;
 import java.util.Optional;
 
@@ -33,7 +31,7 @@ public class RoomController {
 
     @PostMapping(path = "rooms")
     @ResponseBody
-    public ResponseEntity<Room> create(@RequestBody @Valid final roomDto roomDto) {
+    public ResponseEntity<Room> create(@RequestBody @Valid final RoomDto roomDto) {
         Room room = new Room(roomDto);
         roomService.save(room);
         return ResponseEntity.ok().body(room);
@@ -48,7 +46,7 @@ public class RoomController {
 
     @PutMapping(path = "rooms/{id}")
     public ResponseEntity<Room> update(@PathVariable(required = true) @Valid @Min(1) final long id
-            , @RequestBody @Valid final roomDto roomDto) {
+            , @RequestBody @Valid final RoomDto roomDto) {
         Room room = this.getRoomById(id);
         room.mapDto(roomDto);
         roomService.save(room);

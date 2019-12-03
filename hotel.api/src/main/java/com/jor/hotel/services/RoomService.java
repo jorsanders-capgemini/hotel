@@ -1,7 +1,6 @@
 package com.jor.hotel.services;
 
 import com.jor.hotel.models.Room;
-import com.jor.hotel.models.dtos.roomDto;
 import com.jor.hotel.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

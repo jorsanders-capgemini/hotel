@@ -1,20 +1,22 @@
 package com.jor.hotel.models.dtos;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
-public class RoomDto {
+public class GuestDto {
     @NotBlank
     private String name;
 
-    @Min(1)
-    private int capacity;
+    @Email
+    private String email;
 
     public String getName() {
         return name;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public String getEmail() {
+        return email;
     }
 }
