@@ -28,6 +28,7 @@
           {{ room.capacity }}
         </td>
         <td>
+          <button type="button" [routerLink]="[room.id]" class="btn btn-warning">Wijzig</button>
           <button type="button" (click)="onDelete(room.id)" class="btn btn-danger">Verwijder</button>
         </td>
       </tr>

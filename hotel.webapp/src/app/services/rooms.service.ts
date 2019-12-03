@@ -10,14 +10,14 @@ import { HttpClient } from '@angular/common/http';
 export class RoomsService {
   constructor(private hotelApiService: HotelApiService, private readonly httpClient: HttpClient) {}
 
-  private readonly API_URL = 'hotelapi';
-
-  private readonly apiRooms$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
-
   public get rooms$(): Observable<Room[]> {
     this.getRoomsFromAPi();
     return this.apiRooms$.asObservable();
   }
+
+  private readonly API_URL = 'hotelapi';
+
+  private readonly apiRooms$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
 
   private getRoomsFromAPi(): void {
     this.hotelApiService.doGetRequest<Room[]>('/rooms').subscribe((data: any) => {
@@ -29,11 +29,15 @@ export class RoomsService {
     return this.hotelApiService.doPostRequest<Room>('/rooms', room).toPromise<Room>();
   }
 
-  updateRoom(room: Room): void {
-    console.log(room);
+  public getRoom(id: number): Promise<Room> {
+    return this.hotelApiService.doGetRequest<Room>('/rooms/' + id).toPromise<Room>();
   }
 
-  deleteRoom(id: number): Promise<any> {
+  public updateRoom(room: Room): Promise<Room> {
+    return this.hotelApiService.doPutRequest<Room>('/rooms/' + room.id, room).toPromise<Room>();
+  }
+
+  public deleteRoom(id: number): Promise<any> {
     return this.hotelApiService.doDeleteRequest('/rooms/' + id).toPromise();
   }
 }
