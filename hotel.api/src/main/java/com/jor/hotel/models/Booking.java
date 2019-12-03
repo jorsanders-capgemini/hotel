@@ -2,6 +2,7 @@ package com.jor.hotel.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Booking {
@@ -9,11 +10,11 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
-    private Iterable<Guest> guests;
+    @ManyToMany
+    private List<Guest> guests;
 
-    @ManyToOne
-    private Iterable<Room> rooms;
+    @ManyToMany
+    private List<Room> rooms;
 
     private Date bookingDate;
 
@@ -25,19 +26,19 @@ public class Booking {
         this.id = id;
     }
 
-    public Iterable<Guest> getGuests() {
+    public List<Guest> getGuests() {
         return guests;
     }
 
-    public void setGuests(Iterable<Guest> guests) {
+    public void setGuests(List<Guest> guests) {
         this.guests = guests;
     }
 
-    public Iterable<Room> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 
-    public void setRooms(Iterable<Room> rooms) {
+    public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
 

@@ -3,7 +3,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from 'src/app/models/room';
 import { RoomsService } from 'src/app/services/rooms.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { RoomForm } from '../form';
 
 @Component({
   selector: 'app-room-edit',
@@ -12,27 +13,18 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class RoomEditComponent implements OnInit {
   private routeSub: Subscription;
-  private room: Room;
-  roomForm = this.formBuilder.group({
-    name: ['', Validators.required],
-    capacity: ['', [Validators.min(1), Validators.required]],
-    id: ['', [Validators.min(1), Validators.required]]
-  });
+  private roomForm: any;
 
-  constructor(
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private roomsService: RoomsService
-  ) {}
+  constructor(private router: Router, private route: ActivatedRoute, private roomsService: RoomsService) {
+    this.roomForm = RoomForm;
+  }
 
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
-      this.id.setValue(params.id);
-      this.roomsService.getRoom(params.id).then(result => {
-        this.room = result;
-        this.name.setValue(this.room.name);
-        this.capacity.setValue(this.room.capacity);
+      this.roomForm.id.setValue(params.id);
+      this.roomsService.getRoom(params.id).then(room => {
+        this.roomForm.name.setValue(room.name);
+        this.roomForm.capacity.setValue(room.capacity);
       });
     });
 
@@ -44,17 +36,5 @@ export class RoomEditComponent implements OnInit {
     this.roomsService.updateRoom(room).then(() => {
       this.router.navigate(['/kamers']);
     });
-  }
-
-  get name() {
-    return this.roomForm.get('name');
-  }
-
-  get capacity() {
-    return this.roomForm.get('capacity');
-  }
-
-  get id() {
-    return this.roomForm.get('id');
   }
 }
