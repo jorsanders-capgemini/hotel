@@ -14,15 +14,16 @@ export class RoomListComponent implements OnInit {
   constructor(private readonly roomsService: RoomsService) {}
 
   public ngOnInit() {
+    this.rooms$ = this.roomsService.rooms$;
     this.loadData();
   }
 
   public loadData() {
-    this.rooms$ = this.roomsService.rooms$;
+    this.roomsService.getRoomsFromAPi();
   }
 
   public onDelete(id: number) {
-    this.roomsService.deleteRoom(id).then(() => {
+    this.roomsService.deleteRoom(id).subscribe(() => {
       this.loadData();
     });
   }

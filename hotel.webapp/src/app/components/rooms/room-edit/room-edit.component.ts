@@ -29,7 +29,7 @@ export class RoomEditComponent implements OnInit {
   ngOnInit() {
     this.routeSub = this.route.params.subscribe(params => {
       this.id.setValue(params.id);
-      this.roomsService.getRoom(params.id).then(result => {
+      this.roomsService.getRoom(params.id).subscribe(result => {
         this.room = result;
         this.name.setValue(this.room.name);
         this.capacity.setValue(this.room.capacity);
@@ -41,7 +41,7 @@ export class RoomEditComponent implements OnInit {
 
   onSubmit() {
     const room = new Room().deserialize(this.roomForm.value);
-    this.roomsService.updateRoom(room).then(() => {
+    this.roomsService.updateRoom(room).subscribe(() => {
       this.router.navigate(['/kamers']);
     });
   }
