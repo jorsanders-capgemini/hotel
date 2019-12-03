@@ -29,7 +29,7 @@ public class RoomController {
         return roomOptional.get();
     }
 
-    @PostMapping(path = "/api/rooms")
+    @PostMapping(path = "rooms")
     @ResponseBody
     public ResponseEntity<Room> create(@RequestBody @Valid final roomDto roomDto) {
         Room room = new Room(roomDto);
@@ -37,14 +37,14 @@ public class RoomController {
         return ResponseEntity.ok().body(room);
     }
 
-    @GetMapping(path = "/api/rooms/{id}")
+    @GetMapping(path = "rooms/{id}")
     public ResponseEntity<Room> getById(@PathVariable(required = true) @Valid @Min(1) final long id) {
         Room room = this.getRoomById(id);
 
         return ResponseEntity.ok().body(room);
     }
 
-    @PutMapping(path = "/api/rooms/{id}")
+    @PutMapping(path = "rooms/{id}")
     public ResponseEntity<Room> update(@PathVariable(required = true) @Valid @Min(1) final long id
             , @RequestBody @Valid final roomDto roomDto) {
         Room room = this.getRoomById(id);
@@ -54,7 +54,7 @@ public class RoomController {
         return ResponseEntity.ok().body(room);
     }
 
-    @DeleteMapping(path = "/api/rooms/{id}")
+    @DeleteMapping(path = "rooms/{id}")
     public ResponseEntity delete(@PathVariable(required = true) @Valid @Min(1) final long id) {
         // If the room does not exist this throws a 404
         this.getRoomById(id);
@@ -64,7 +64,7 @@ public class RoomController {
         return ResponseEntity.ok().body(id);
     }
 
-    @GetMapping("api/rooms")
+    @GetMapping("rooms")
     public ResponseEntity<Iterable<Room>> getRooms(@RequestParam(required = false) String name,
                                                    @RequestParam(required = false, defaultValue = "true") @Valid boolean ignoreCase,
                                                    @RequestParam(required = false) @Valid boolean exactMatch) {
