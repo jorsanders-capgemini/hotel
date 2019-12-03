@@ -10,32 +10,28 @@ import { HttpClient } from '@angular/common/http';
 export class RoomsService {
   constructor(private hotelApiService: HotelApiService, private readonly httpClient: HttpClient) {}
 
-  public get rooms$(): Observable<Room[]> {
-    this.getRoomsFromAPi();
-    return this.apiRooms$.asObservable();
-  }
-
   private readonly apiRooms$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
+  public readonly rooms$: Observable<Room[]> = this.apiRooms$.asObservable();
 
-  private getRoomsFromAPi(): void {
+  public getRoomsFromAPi(): void {
     this.hotelApiService.doGetRequest<Room[]>('/rooms').subscribe((data: any) => {
       this.apiRooms$.next(data);
     });
   }
 
-  public createRoom(room: Room): Promise<Room> {
-    return this.hotelApiService.doPostRequest<Room>('/rooms', room).toPromise<Room>();
+  public createRoom(room: Room): Observable<Room> {
+    return this.hotelApiService.doPostRequest<Room>('/rooms', room);
   }
 
-  public getRoom(id: number): Promise<Room> {
-    return this.hotelApiService.doGetRequest<Room>('/rooms/' + id).toPromise<Room>();
+  public getRoom(id: number): Observable<Room> {
+    return this.hotelApiService.doGetRequest<Room>('/rooms/' + id);
   }
 
-  public updateRoom(room: Room): Promise<Room> {
-    return this.hotelApiService.doPutRequest<Room>('/rooms/' + room.id, room).toPromise<Room>();
+  public updateRoom(room: Room): Observable<Room> {
+    return this.hotelApiService.doPutRequest<Room>('/rooms/' + room.id, room);
   }
 
-  public deleteRoom(id: number): Promise<any> {
-    return this.hotelApiService.doDeleteRequest('/rooms/' + id).toPromise();
+  public deleteRoom(id: number): Observable<Room> {
+    return this.hotelApiService.doDeleteRequest('/rooms/' + id);
   }
 }

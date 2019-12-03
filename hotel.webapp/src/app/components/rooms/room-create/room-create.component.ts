@@ -21,7 +21,7 @@ export class RoomCreateComponent implements OnInit {
 
   onSubmit() {
     const room = new Room().deserialize(this.roomForm.value);
-    this.roomsService.createRoom(room).then(() => {
+    this.roomsService.createRoom(room).subscribe(() => {
       this.router.navigate(['/kamers']);
     });
   }
