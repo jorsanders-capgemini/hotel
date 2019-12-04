@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { form } from '../form';
 import { RoomsService } from 'src/app/services/rooms.service';
+import { roomForm } from '../roomForm';
 
 @Component({
   selector: 'app-form-component',
@@ -9,20 +9,26 @@ import { RoomsService } from 'src/app/services/rooms.service';
   styleUrls: ['./form-component.component.scss']
 })
 export class FormComponentComponent implements OnInit {
-  protected roomForm: FormGroup;
-  protected buttonText: string;
+  public form: FormGroup;
+  @Input()
+  public buttonText: string;
+  @Input()
+  public onSubmit: any;
 
   constructor(protected roomsService: RoomsService) {}
 
   ngOnInit() {
-    this.roomForm = form;
+    this.form = roomForm;
+    this.onSubmit = () => {
+      console.log('dsaf');
+    };
   }
 
   public get name() {
-    return this.roomForm.get('name');
+    return this.form.get('name');
   }
 
   public get capacity() {
-    return this.roomForm.get('capacity');
+    return this.form.get('capacity');
   }
 }

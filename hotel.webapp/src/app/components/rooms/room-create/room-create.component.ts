@@ -3,7 +3,7 @@ import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { Room } from 'src/app/models/room';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { Router } from '@angular/router';
-import { form } from '../form';
+import { roomForm } from '../roomForm';
 
 @Component({
   selector: 'app-room-create',
@@ -16,14 +16,16 @@ export class RoomCreateComponent implements OnInit {
   constructor(protected roomsService: RoomsService, protected router: Router) {}
 
   ngOnInit() {
-    this.roomForm = form;
+    this.roomForm = roomForm;
     this.roomForm.get('name').setValue('fda');
+    this.roomForm.get('capacity').setValue(1);
   }
 
   onSubmit() {
-    const room = new Room().deserialize(this.roomForm.value);
-    this.roomsService.createRoom(room).subscribe(() => {
-      this.router.navigate(['/kamers']);
-    });
+    console.log('dfadfa');
+    // const room = new Room().deserialize(this.roomForm.value);
+    // this.roomsService.createRoom(room).subscribe(() => {
+    //   this.router.navigate(['/kamers']);
+    // });
   }
 }

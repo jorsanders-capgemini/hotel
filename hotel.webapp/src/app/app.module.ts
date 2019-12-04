@@ -10,11 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomCreateComponent } from './components/rooms/room-create/room-create.component';
 import { RoomListComponent } from './components/rooms/room-list/room-list.component';
-import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
 import { FormComponentComponent } from './components/rooms/form-component/form-component.component';
 
 @NgModule({
-  declarations: [AppComponent, NavigationComponent, PageNotFoundComponent, RoomCreateComponent, RoomListComponent, RoomEditComponent, FormComponentComponent],
+  declarations: [AppComponent, NavigationComponent, PageNotFoundComponent, RoomCreateComponent, RoomListComponent, FormComponentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
