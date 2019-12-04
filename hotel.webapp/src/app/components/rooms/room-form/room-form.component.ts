@@ -1,14 +1,14 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { roomForm } from '../roomForm';
 
 @Component({
-  selector: 'app-form-component',
-  templateUrl: './form-component.component.html',
-  styleUrls: ['./form-component.component.scss']
+  selector: 'app-room-form',
+  templateUrl: './room-form.component.html',
+  styleUrls: ['./room-form.component.scss']
 })
-export class FormComponentComponent implements OnInit {
+export class RoomFormComponent implements OnInit {
   public form: FormGroup;
   @Input()
   public buttonText: string;
