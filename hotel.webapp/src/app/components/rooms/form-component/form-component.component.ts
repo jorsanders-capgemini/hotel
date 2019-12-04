@@ -25,8 +25,4 @@ export class FormComponentComponent implements OnInit {
   public get capacity() {
     return this.roomForm.get('capacity');
   }
-
-  public onSubmit() {
-    throw new Error('Not implemented');
-  }
 }

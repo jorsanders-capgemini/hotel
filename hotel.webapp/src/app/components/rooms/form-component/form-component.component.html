@@ -1,16 +1,20 @@
-<div class="form-group">
-  <label for="name" class="control-label"> Naam: </label>
-  <input type="text" class="form-control" formControlName="name" required />
-  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-    <div *ngIf="name.errors.required">Naam is verplicht</div>
+<form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name" class="control-label"> Naam: </label>
+    <input type="text" class="form-control" formControlName="name" required />
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+      <div *ngIf="name.errors.required">Naam is verplicht</div>
+    </div>
   </div>
-</div>
 
-<div class="form-group">
-  <label for="capacity" class="control-label"> Capaciteit: </label>
-  <input type="number" class="form-control" formControlName="capacity" required />
-  <div *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)" class="alert alert-danger">
-    <div *ngIf="capacity.errors.min">Capaciteit moet minimaal {{ capacity.errors.min.min }} zijn</div>
-    <div *ngIf="capacity.errors.required">Capaciteit is verplicht</div>
+  <div class="form-group">
+    <label for="capacity" class="control-label"> Capaciteit: </label>
+    <input type="number" class="form-control" formControlName="capacity" required />
+    <div *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)" class="alert alert-danger">
+      <div *ngIf="capacity.errors.min">Capaciteit moet minimaal {{ capacity.errors.min.min }} zijn</div>
+      <div *ngIf="capacity.errors.required">Capaciteit is verplicht</div>
+    </div>
   </div>
-</div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!roomForm.valid">Voeg toe</button>
+</form>
