@@ -21,11 +21,10 @@ export class RoomCreateComponent implements OnInit {
     this.roomForm.get('capacity').setValue(1);
   }
 
-  onSubmit() {
-    console.log('dfadfa');
-    // const room = new Room().deserialize(this.roomForm.value);
-    // this.roomsService.createRoom(room).subscribe(() => {
-    //   this.router.navigate(['/kamers']);
-    // });
+  onSubmit(value: any) {
+    const room = new Room().deserialize(this.roomForm.value);
+    this.roomsService.createRoom(room).subscribe(() => {
+      this.router.navigate(['/kamers']);
+    });
   }
 }

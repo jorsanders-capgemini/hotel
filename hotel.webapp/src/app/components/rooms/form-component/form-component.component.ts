@@ -12,16 +12,12 @@ export class FormComponentComponent implements OnInit {
   public form: FormGroup;
   @Input()
   public buttonText: string;
-  @Input()
-  public onSubmit: any;
+  @Output() submitEvent: EventEmitter<any> = new EventEmitter();
 
   constructor(protected roomsService: RoomsService) {}
 
   ngOnInit() {
     this.form = roomForm;
-    this.onSubmit = () => {
-      console.log('dsaf');
-    };
   }
 
   public get name() {
@@ -30,5 +26,9 @@ export class FormComponentComponent implements OnInit {
 
   public get capacity() {
     return this.form.get('capacity');
+  }
+
+  public onSubmit() {
+    this.submitEvent.emit(this.form.value);
   }
 }
