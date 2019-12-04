@@ -1,20 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
-import { Room } from 'src/app/models/room';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { Router } from '@angular/router';
-import { roomForm } from '../roomForm';
+import { Room } from 'src/app/models/room';
 
 @Component({
-  selector: 'app-room-create',
-  templateUrl: './room-create.component.html',
-  styleUrls: ['./room-create.component.scss']
+  selector: 'app-room-edit',
+  templateUrl: './room-edit.component.html',
+  styleUrls: ['./room-edit.component.scss']
 })
-export class RoomCreateComponent implements OnInit {
+export class RoomEditComponent implements OnInit {
   constructor(protected roomsService: RoomsService, protected router: Router) {}
 
   ngOnInit() {}
-
   onSubmit(roomData: any) {
     const room = new Room().deserialize(roomData);
     this.roomsService.createRoom(room).subscribe(() => {
