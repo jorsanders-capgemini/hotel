@@ -18,6 +18,7 @@ export class FormComponentComponent implements OnInit {
 
   ngOnInit() {
     this.form = roomForm;
+    this.form.reset();
   }
 
   public get name() {

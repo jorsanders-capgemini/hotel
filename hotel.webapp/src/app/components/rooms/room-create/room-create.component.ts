@@ -16,7 +16,8 @@ export class RoomCreateComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(roomData: any) {
-    const room = new Room().deserialize(roomData);
+    let room: Room;
+    room = roomData;
     this.roomsService.createRoom(room).subscribe(() => {
       this.router.navigate(['/kamers']);
     });

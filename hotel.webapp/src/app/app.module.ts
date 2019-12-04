@@ -14,7 +14,15 @@ import { FormComponentComponent } from './components/rooms/form-component/form-c
 import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, NavigationComponent, PageNotFoundComponent, RoomCreateComponent, RoomListComponent, FormComponentComponent, RoomEditComponent],
+  declarations: [
+    AppComponent,
+    NavigationComponent,
+    PageNotFoundComponent,
+    RoomCreateComponent,
+    RoomListComponent,
+    FormComponentComponent,
+    RoomEditComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
