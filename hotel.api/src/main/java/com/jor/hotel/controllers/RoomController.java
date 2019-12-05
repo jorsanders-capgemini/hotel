@@ -67,8 +67,7 @@ public class RoomController {
     @GetMapping("rooms")
     public ResponseEntity<Iterable<Room>> getRooms(@RequestParam(required = false) String name,
                                                    @RequestParam(required = false, defaultValue = "true") @Valid boolean ignoreCase,
-                                                   @RequestParam(required = false) @Valid boolean exactMatch,
-                                                   @RequestHeader Map<String, String> headers) {
+                                                   @RequestParam(required = false) @Valid boolean exactMatch) {
         Iterable<Room> rooms;
 
         if (name != null && !name.isEmpty()) {
