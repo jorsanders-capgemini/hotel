@@ -1,7 +1,9 @@
 package com.jor.hotel.models;
 
+import com.jor.hotel.models.dtos.BookingDto;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -16,7 +18,12 @@ public class Booking {
     @ManyToMany
     private List<Room> rooms;
 
+    private int nights;
+
     private Date bookingDate;
+
+    public Booking() {
+    }
 
     public long getId() {
         return id;
@@ -42,14 +49,19 @@ public class Booking {
         this.rooms = rooms;
     }
 
+    public int getNights() {
+        return nights;
+    }
+
+    public void setNights(int nights) {
+        this.nights = nights;
+    }
+
     public Date getBookingDate() {
         return bookingDate;
     }
 
     public void setBookingDate(Date bookingDate) {
         this.bookingDate = bookingDate;
-    }
-
-    public Booking() {
     }
 }

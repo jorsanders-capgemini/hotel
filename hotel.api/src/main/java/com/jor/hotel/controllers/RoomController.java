@@ -3,6 +3,7 @@ package com.jor.hotel.controllers;
 import com.jor.hotel.models.Room;
 import com.jor.hotel.models.dtos.RoomDto;
 import com.jor.hotel.services.RoomService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,8 @@ public class RoomController {
     @PostMapping(path = "rooms")
     @ResponseBody
     public ResponseEntity<Room> create(@RequestBody @Valid final RoomDto roomDto) {
-        Room room = new Room(roomDto);
+        Room room = new Room();
+        BeanUtils.copyProperties(roomDto, room);
         roomService.save(room);
         return ResponseEntity.ok().body(room);
     }
@@ -48,7 +50,7 @@ public class RoomController {
     public ResponseEntity<Room> update(@PathVariable(required = true) @Valid @Min(1) final long id
             , @RequestBody @Valid final RoomDto roomDto) {
         Room room = this.getRoomById(id);
-        room.mapDto(roomDto);
+        BeanUtils.copyProperties(roomDto, room);
         roomService.save(room);
 
         return ResponseEntity.ok().body(room);
@@ -67,8 +69,7 @@ public class RoomController {
     @GetMapping("rooms")
     public ResponseEntity<Iterable<Room>> getRooms(@RequestParam(required = false) String name,
                                                    @RequestParam(required = false, defaultValue = "true") @Valid boolean ignoreCase,
-                                                   @RequestParam(required = false) @Valid boolean exactMatch,
-                                                   @RequestHeader Map<String, String> headers) {
+                                                   @RequestParam(required = false) @Valid boolean exactMatch) {
         Iterable<Room> rooms;
 
         if (name != null && !name.isEmpty()) {
