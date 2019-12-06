@@ -1,9 +1,10 @@
 package com.jor.hotel.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jor.hotel.models.dtos.BookingDto;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class Booking {
 
     private int nights;
 
-    private Date bookingDate;
+    private Timestamp bookingDate;
 
     public Booking() {
     }
@@ -57,11 +58,11 @@ public class Booking {
         this.nights = nights;
     }
 
-    public Date getBookingDate() {
+    public Timestamp getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(Timestamp bookingDate) {
         this.bookingDate = bookingDate;
     }
 }

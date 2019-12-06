@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +45,7 @@ public class BookingService {
 
     public void setPropertiesFromDto(BookingDto bookingDto, Booking booking){
         BeanUtils.copyProperties(bookingDto, booking);
-        booking.setBookingDate(new Date(bookingDto.getBookingDate().getTime()));
+        booking.setBookingDate(new Timestamp(bookingDto.getBookingDate().getTime()));
         booking.setGuests(guestService.getByIds(bookingDto.getGuestIds()));
         booking.setRooms(roomService.getByIds(bookingDto.getRoomIds()));
     }

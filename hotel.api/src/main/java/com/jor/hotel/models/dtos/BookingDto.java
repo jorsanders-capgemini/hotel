@@ -1,7 +1,8 @@
 package com.jor.hotel.models.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 public class BookingDto {

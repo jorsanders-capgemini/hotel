@@ -35,7 +35,7 @@ public class BookingController {
     public ResponseEntity<Booking> create(@RequestBody @Valid final BookingDto bookingDto) {
         Booking booking = new Booking();
         bookingService.setPropertiesFromDto(bookingDto, booking);
-        bookingService.save(booking);
+        booking = bookingService.save(booking);
 
         return ResponseEntity.ok().body(booking);
     }
@@ -51,7 +51,7 @@ public class BookingController {
     public ResponseEntity<Booking> update(@PathVariable(required = true) @Valid @Min(1) final long id
             , @RequestBody @Valid final BookingDto bookingDto) {
         Booking booking = this.getBookingById(id);
-        BeanUtils.copyProperties(bookingDto, booking);
+        bookingService.setPropertiesFromDto(bookingDto, booking);
         bookingService.save(booking);
 
         return ResponseEntity.ok().body(booking);
