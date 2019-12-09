@@ -68,7 +68,7 @@ public class BookingController {
     }
 
     @GetMapping("bookings")
-    public ResponseEntity<Iterable<Booking>> getBookings() {
+    public ResponseEntity<Iterable<Booking>> getList() {
         Iterable<Booking> bookings = bookingService.getAll();
 
         return ResponseEntity.ok().body(bookings);

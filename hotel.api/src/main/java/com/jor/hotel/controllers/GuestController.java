@@ -67,7 +67,7 @@ public class GuestController {
     }
 
     @GetMapping("guests")
-    public ResponseEntity<Iterable<Guest>> getGuests(@RequestParam(required = false) String name,
+    public ResponseEntity<Iterable<Guest>> getList(@RequestParam(required = false) String name,
                                                    @RequestParam(required = false, defaultValue = "true") @Valid boolean ignoreCase,
                                                    @RequestParam(required = false) @Valid boolean exactMatch) {
         Iterable<Guest> guests;
