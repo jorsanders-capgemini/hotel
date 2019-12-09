@@ -6,10 +6,10 @@ import { RoomCreateComponent } from './components/rooms/room-create/room-create.
 import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'kamers', pathMatch: 'full' },
-  { path: 'kamers', component: RoomListComponent },
-  { path: 'kamers/nieuw', component: RoomCreateComponent },
-  { path: 'kamers/:id', component: RoomEditComponent },
+  { path: '', redirectTo: 'rooms', pathMatch: 'full' },
+  { path: 'rooms', component: RoomListComponent },
+  { path: 'rooms/new', component: RoomCreateComponent },
+  { path: 'rooms/:id', component: RoomEditComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

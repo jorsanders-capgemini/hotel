@@ -30,7 +30,7 @@ export class RoomEditComponent implements OnInit {
     this.room.name = roomData.name;
     this.room.capacity = roomData.capacity;
     this.roomsService.updateRoom(this.room).subscribe(() => {
-      this.router.navigate(['/kamers']);
+      this.router.navigate(['/rooms']);
     });
   }
 }

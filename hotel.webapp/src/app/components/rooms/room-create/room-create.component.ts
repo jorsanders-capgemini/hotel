@@ -19,7 +19,7 @@ export class RoomCreateComponent implements OnInit {
     let room: Room;
     room = roomData;
     this.roomsService.createRoom(room).subscribe(() => {
-      this.router.navigate(['/kamers']);
+      this.router.navigate(['/rooms']);
     });
   }
 }
