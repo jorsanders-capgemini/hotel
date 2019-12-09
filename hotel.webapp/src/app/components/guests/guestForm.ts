@@ -2,7 +2,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 
 const formBuilder = new FormBuilder();
 
-export const roomForm = formBuilder.group({
+export const guestForm = formBuilder.group({
   name: ['', Validators.required],
-  email: ['', [Validators.email]]
+  email: ['', [Validators.email, Validators.required]]
 });
