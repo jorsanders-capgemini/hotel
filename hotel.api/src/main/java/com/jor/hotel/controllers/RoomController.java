@@ -3,6 +3,7 @@ package com.jor.hotel.controllers;
 import com.jor.hotel.models.Room;
 import com.jor.hotel.models.dtos.RoomDto;
 import com.jor.hotel.services.RoomService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
+    @Min(1)
     private Room getRoomById(long id) {
         Optional<Room> roomOptional = roomService.getById(id);
 
