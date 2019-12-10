@@ -1,35 +1,39 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RoomsService } from 'src/app/services/rooms.service';
-import { roomForm } from '../roomForm';
 
 @Component({
   selector: 'app-room-form',
   templateUrl: './room-form.component.html',
   styleUrls: ['./room-form.component.scss']
 })
-export class RoomFormComponent implements OnInit {
-  public form: FormGroup;
+export class RoomFormComponent implements OnInit, OnChanges {
+  @Input()
+  public initialData: RoomFormData;
   @Input()
   public buttonText: string;
-  @Output() submitEvent: EventEmitter<any> = new EventEmitter();
+  @Output() submitEvent: EventEmitter<RoomFormData> = new EventEmitter();
+  public form: FormGroup;
 
-  constructor(protected roomsService: RoomsService) {}
-
-  ngOnInit() {
-    this.form = roomForm;
-    this.form.reset();
+  constructor(protected roomsService: RoomsService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: ['', Validators.required],
+      capacity: ['', [Validators.min(1), Validators.required]]
+    });
   }
 
-  public get name() {
-    return this.form.get('name');
-  }
+  ngOnInit() {}
 
-  public get capacity() {
-    return this.form.get('capacity');
+  ngOnChanges() {
+    this.form.patchValue({ ...this.initialData });
   }
 
   public onSubmit() {
     this.submitEvent.emit(this.form.value);
   }
+}
+
+export class RoomFormData {
+  public name: string;
+  public capacity: number;
 }
