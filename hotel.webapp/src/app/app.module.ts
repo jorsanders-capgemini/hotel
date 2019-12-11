@@ -16,6 +16,10 @@ import { GuestListComponent } from './components/guests/guest-list/guest-list.co
 import { GuestEditComponent } from './components/guests/guest-edit/guest-edit.component';
 import { GuestCreateComponent } from './components/guests/guest-create/guest-create.component';
 import { GuestFormComponent } from './components/guests/guest-form/guest-form.component';
+import { BookingFormComponent } from './components/bookings/booking-form/booking-form.component';
+import { BookingEditComponent } from './components/bookings/booking-edit/booking-edit.component';
+import { BookingCreateComponent } from './components/bookings/booking-create/booking-create.component';
+import { BookingListComponent } from './components/bookings/booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { GuestFormComponent } from './components/guests/guest-form/guest-form.co
     GuestListComponent,
     GuestEditComponent,
     GuestCreateComponent,
-    GuestFormComponent
+    GuestFormComponent,
+    BookingFormComponent,
+    BookingEditComponent,
+    BookingCreateComponent,
+    BookingListComponent
   ],
   imports: [
     BrowserModule,

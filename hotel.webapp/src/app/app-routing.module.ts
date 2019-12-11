@@ -7,6 +7,9 @@ import { RoomEditComponent } from './components/rooms/room-edit/room-edit.compon
 import { GuestEditComponent } from './components/guests/guest-edit/guest-edit.component';
 import { GuestListComponent } from './components/guests/guest-list/guest-list.component';
 import { GuestCreateComponent } from './components/guests/guest-create/guest-create.component';
+import { BookingCreateComponent } from './components/bookings/booking-create/booking-create.component';
+import { BookingListComponent } from './components/bookings/booking-list/booking-list.component';
+import { BookingEditComponent } from './components/bookings/booking-edit/booking-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'rooms', pathMatch: 'full' },
@@ -16,6 +19,9 @@ const routes: Routes = [
   { path: 'guests', component: GuestListComponent },
   { path: 'guests/new', component: GuestCreateComponent },
   { path: 'guests/:id', component: GuestEditComponent },
+  { path: 'bookings', component: BookingListComponent },
+  { path: 'bookings/new', component: BookingCreateComponent },
+  { path: 'bookings/:id', component: BookingEditComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GuestsService } from 'src/app/services/guests.service';
 import { Router } from '@angular/router';
 import { Guest } from 'src/app/models/guest';
+import { GuestFormData } from '../guest-form/guest-form.component';
 
 @Component({
   selector: 'app-guest-create',
@@ -13,10 +14,8 @@ export class GuestCreateComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit(guestData: any) {
-    let guest: Guest;
-    guest = guestData;
-    this.guestsService.createGuest(guest).subscribe(() => {
+  onSubmit(guestData: GuestFormData) {
+    this.guestsService.createGuest({ ...new Guest(), ...guestData }).subscribe(() => {
       this.router.navigate(['/guests']);
     });
   }
