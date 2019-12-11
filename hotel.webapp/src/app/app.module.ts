@@ -15,6 +15,8 @@ import { GuestListComponent } from './components/guests/guest-list/guest-list.co
 import { GuestEditComponent } from './components/guests/guest-edit/guest-edit.component';
 import { GuestCreateComponent } from './components/guests/guest-create/guest-create.component';
 import { GuestFormComponent } from './components/guests/guest-form/guest-form.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,14 @@ import { GuestFormComponent } from './components/guests/guest-form/guest-form.co
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
