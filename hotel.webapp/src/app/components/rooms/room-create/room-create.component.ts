@@ -15,7 +15,7 @@ export class RoomCreateComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(roomData: RoomFormData) {
-    this.roomsService.createRoom({ ...new Room(), ...roomData }).subscribe(() => {
+    this.roomsService.create({ ...new Room(), ...roomData }).subscribe(() => {
       this.router.navigate(['/rooms']);
     });
   }

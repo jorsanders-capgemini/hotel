@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Room } from 'src/app/models/room';
 import { RoomsService } from 'src/app/services/rooms.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
+import { getAllRooms } from 'src/app/store/room/rooms.reducers';
 
 @Component({
   selector: 'app-room-list',
@@ -11,20 +14,20 @@ import { RoomsService } from 'src/app/services/rooms.service';
 export class RoomListComponent implements OnInit {
   public rooms$: Observable<Room[]>;
 
-  constructor(private readonly roomsService: RoomsService) {}
+  constructor(private store: Store<AppState>) {}
 
   public ngOnInit() {
-    this.rooms$ = this.roomsService.rooms$;
-    this.loadData();
+    this.rooms$ = this.store.select(getAllRooms);
+    // this.loadData();
   }
 
   public loadData() {
-    this.roomsService.getRoomsFromAPi();
+    // this.roomsService.getRoomsFromAPi();
   }
 
   public onDelete(id: number) {
-    this.roomsService.deleteRoom(id).subscribe(() => {
-      this.loadData();
-    });
+    // this.roomsService.deleteById(id).subscribe(() => {
+    //   this.loadData();
+    // });
   }
 }

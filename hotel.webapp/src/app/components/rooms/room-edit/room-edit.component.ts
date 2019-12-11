@@ -17,7 +17,7 @@ export class RoomEditComponent implements OnInit {
   ngOnInit() {
     this.room = new Room();
     const routeSub = this.route.params.subscribe(params => {
-      this.roomsService.getRoom(params.id).subscribe(result => {
+      this.roomsService.getById(params.id).subscribe(result => {
         this.room = result;
       });
     });
@@ -25,7 +25,7 @@ export class RoomEditComponent implements OnInit {
   }
 
   onSubmit(roomData: RoomFormData) {
-    this.roomsService.updateRoom({ ...this.room, ...roomData }).subscribe(() => {
+    this.roomsService.update({ ...this.room, ...roomData }).subscribe(() => {
       this.router.navigate(['/rooms']);
     });
   }

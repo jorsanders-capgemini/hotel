@@ -9,28 +9,32 @@ import { HotelApiService } from './hotel-api.service';
 export class RoomsService {
   constructor(private hotelApiService: HotelApiService) {}
 
-  private readonly apiRooms$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
-  public readonly rooms$: Observable<Room[]> = this.apiRooms$.asObservable();
+  // private readonly apiRooms$: BehaviorSubject<Room[]> = new BehaviorSubject<Room[]>([]);
+  // public readonly rooms$: Observable<Room[]> = this.apiRooms$.asObservable();
 
-  public getRoomsFromAPi(): void {
-    this.hotelApiService.doGetRequest<Room[]>('/rooms').subscribe((data: any) => {
-      this.apiRooms$.next(data);
-    });
+  // public getRoomsFromAPi(): void {
+  //   this.hotelApiService.doGetRequest<Room[]>('/rooms').subscribe((data: any) => {
+  //     this.apiRooms$.next(data);
+  //   });
+  // }
+
+  public getAll(): Observable<Room[]> {
+    return this.hotelApiService.doGetRequest<Room[]>('/rooms');
   }
 
-  public createRoom(room: Room): Observable<Room> {
+  public create(room: Room): Observable<Room> {
     return this.hotelApiService.doPostRequest<Room>('/rooms', room);
   }
 
-  public getRoom(id: number): Observable<Room> {
+  public getById(id: number): Observable<Room> {
     return this.hotelApiService.doGetRequest<Room>('/rooms/' + id);
   }
 
-  public updateRoom(room: Room): Observable<Room> {
+  public update(room: Room): Observable<Room> {
     return this.hotelApiService.doPutRequest<Room>('/rooms/' + room.id, room);
   }
 
-  public deleteRoom(id: number): Observable<Room> {
+  public deleteById(id: number): Observable<Room> {
     return this.hotelApiService.doDeleteRequest('/rooms/' + id);
   }
 }
