@@ -12,6 +12,14 @@ import { RoomCreateComponent } from './components/rooms/room-create/room-create.
 import { RoomListComponent } from './components/rooms/room-list/room-list.component';
 import { RoomEditComponent } from './components/rooms/room-edit/room-edit.component';
 import { RoomFormComponent } from './components/rooms/room-form/room-form.component';
+import { GuestListComponent } from './components/guests/guest-list/guest-list.component';
+import { GuestEditComponent } from './components/guests/guest-edit/guest-edit.component';
+import { GuestCreateComponent } from './components/guests/guest-create/guest-create.component';
+import { GuestFormComponent } from './components/guests/guest-form/guest-form.component';
+import { BookingFormComponent } from './components/bookings/booking-form/booking-form.component';
+import { BookingEditComponent } from './components/bookings/booking-edit/booking-edit.component';
+import { BookingCreateComponent } from './components/bookings/booking-create/booking-create.component';
+import { BookingListComponent } from './components/bookings/booking-list/booking-list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +29,15 @@ import { RoomFormComponent } from './components/rooms/room-form/room-form.compon
     RoomCreateComponent,
     RoomListComponent,
     RoomEditComponent,
-    RoomFormComponent
+    RoomFormComponent,
+    GuestListComponent,
+    GuestEditComponent,
+    GuestCreateComponent,
+    GuestFormComponent,
+    BookingFormComponent,
+    BookingEditComponent,
+    BookingCreateComponent,
+    BookingListComponent
   ],
   imports: [
     BrowserModule,

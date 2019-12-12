@@ -1,11 +1,17 @@
 package com.jor.hotel.services;
 
+import com.google.common.collect.Lists;
+import com.jor.hotel.models.Guest;
 import com.jor.hotel.models.Room;
+import com.jor.hotel.models.dtos.RoomDto;
 import com.jor.hotel.repositories.RoomRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,5 +52,16 @@ public class RoomService {
 
     public void deleteById(long id) {
         roomRepository.deleteById(id);
+    }
+
+    public List<Room> getByIds(long[] ids){
+        ArrayList<Room> rooms =  Lists.newArrayList(roomRepository.findByIdIn(ids));
+
+        if(rooms.size() != ids.length){
+            // TODO: find out which ids are not found
+            throw new IllegalArgumentException();
+        }
+
+        return rooms;
     }
 }

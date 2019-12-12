@@ -22,7 +22,6 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.jor.hotel"))
                 .paths(PathSelectors.any())
                 .build();
-
     }
 
     private ApiInfo apiInfo() {
@@ -33,6 +32,7 @@ public class SwaggerConfig {
                 "",
                 new Contact("Jor Sanders", "www.example.com", "jor.sanders@capgemini.com"),
                 "",
-                "", Collections.emptyList());
+                "",
+                Collections.emptyList());
     }
 }

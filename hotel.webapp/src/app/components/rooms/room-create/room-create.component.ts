@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormArray, FormGroup } from '@angular/forms';
 import { Room } from 'src/app/models/room';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { Router } from '@angular/router';
-import { roomForm } from '../roomForm';
+import { RoomFormData } from '../room-form/room-form.component';
 
 @Component({
   selector: 'app-room-create',
@@ -15,11 +14,9 @@ export class RoomCreateComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit(roomData: any) {
-    let room: Room;
-    room = roomData;
-    this.roomsService.createRoom(room).subscribe(() => {
-      this.router.navigate(['/kamers']);
+  onSubmit(roomData: RoomFormData) {
+    this.roomsService.createRoom({ ...new Room(), ...roomData }).subscribe(() => {
+      this.router.navigate(['/rooms']);
     });
   }
 }

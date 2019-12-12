@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col">
+    <h3>Guests</h3>
+  </div>
+  <div clas="col float-right">
+    <button type="button" class="btn btn-success " [routerLink]="['new']">Add a new guest</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          E-mail
+        </th>
+        <th>
+          Actions
+        </th>
+        <th>
+          Id
+        </th>
+      </tr>
+      <tr *ngFor="let guest: of guests$ | async">
+        <td>
+          {{ guest.name }}
+        </td>
+        <td>
+          {{ guest.email }}
+        </td>
+        <td>
+          <button type="button" [routerLink]="[guest.id]" class="btn btn-warning">Edit</button>
+          <button type="button" (click)="onDelete(guest.id)" class="btn btn-danger">Delete</button>
+        </td>
+        <td>
+          {{ guest.id }}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

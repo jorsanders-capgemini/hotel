@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col">
-    <h3>Kamers</h3>
+    <h3>Rooms </h3>
   </div>
   <div clas="col float-right">
-    <button type="button" class="btn btn-success " [routerLink]="['nieuw']">Voeg toe</button>
+    <button type="button" class="btn btn-success " [routerLink]="['new']">Add a new room</button>
   </div>
 </div>
 <div class="row">
@@ -11,13 +11,16 @@
     <table class="table">
       <tr>
         <th>
-          Naam
+          Name
         </th>
         <th>
-          Capaciteit
+          Capacity
         </th>
         <th>
-          Acties
+          Actions
+        </th>
+        <th>
+          Id
         </th>
       </tr>
       <tr *ngFor="let room: of rooms$ | async">
@@ -28,8 +31,11 @@
           {{ room.capacity }}
         </td>
         <td>
-          <button type="button" [routerLink]="[room.id]" class="btn btn-warning">Wijzig</button>
-          <button type="button" (click)="onDelete(room.id)" class="btn btn-danger">Verwijder</button>
+          <button type="button" [routerLink]="[room.id]" class="btn btn-warning">Edit</button>
+          <button type="button" (click)="onDelete(room.id)" class="btn btn-danger">Delete</button>
+        </td>
+        <td>
+          {{ room.id }}
         </td>
       </tr>
     </table>
