@@ -19,7 +19,6 @@ export class BookingsService {
   }
 
   public createBooking(booking: Booking): Observable<Booking> {
-    console.log(JSON.stringify(booking));
     return this.hotelApiService.doPostRequest<Booking>('/bookings', booking);
   }
 
