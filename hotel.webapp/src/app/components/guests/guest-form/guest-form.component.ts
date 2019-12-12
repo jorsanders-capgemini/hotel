@@ -7,7 +7,7 @@ import { GuestsService } from 'src/app/services/guests.service';
   templateUrl: './guest-form.component.html',
   styleUrls: ['./guest-form.component.scss']
 })
-export class GuestFormComponent implements OnInit, OnChanges {
+export class GuestFormComponent implements OnInit {
   @Input()
   public initialData: GuestFormData;
   @Input()
@@ -22,9 +22,7 @@ export class GuestFormComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnInit() {}
-
-  ngOnChanges() {
+  ngOnInit() {
     this.form.patchValue({ ...this.initialData });
   }
 

@@ -8,7 +8,7 @@ import { BookingFormData } from 'src/app/models/fromData/booking-form-data';
   templateUrl: './booking-form.component.html',
   styleUrls: ['./booking-form.component.scss']
 })
-export class BookingFormComponent implements OnInit, OnChanges {
+export class BookingFormComponent implements OnInit {
   @Input()
   public initialData: BookingFormData;
   @Input()
@@ -33,9 +33,7 @@ export class BookingFormComponent implements OnInit, OnChanges {
     (this.form.controls.guestIds as FormArray).push(this.formBuilder.control(0));
   }
 
-  ngOnInit() {}
-
-  ngOnChanges() {
+  ngOnInit() {
     if (!this.initialData) {
       return;
     }
