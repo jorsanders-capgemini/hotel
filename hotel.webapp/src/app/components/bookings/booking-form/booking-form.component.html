@@ -2,7 +2,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div formArrayName="guestIds">
       <h3>Guest Ids</h3>
-      <button type="button" (click)="addGuestId()">Add guest Id</button>
+      <button type="button" class="btn btn-light" (click)="addGuestId()"><img src="assets/open-iconic/svg/plus.svg"/> Add guest Id</button>
       <div *ngFor="let guestId of form.controls?.guestIds.controls; let i = index">
         <!-- The repeated alias template -->
         <label>
@@ -14,7 +14,7 @@
 
     <div formArrayName="roomIds">
       <h3>Room Ids</h3>
-      <button type="button" (click)="addRoomId()">Add Room Id</button>
+      <button type="button" class="btn btn-light" (click)="addRoomId()"><img src="assets/open-iconic/svg/plus.svg"/> Add Room Id</button>
 
       <div *ngFor="let roomId of form.controls?.roomIds.controls; let i = index">
         <!-- The repeated alias template -->

@@ -3,7 +3,7 @@
     <h3>Rooms </h3>
   </div>
   <div clas="col float-right">
-    <button type="button" class="btn btn-success " [routerLink]="['new']">Add a new room</button>
+    <button type="button" [routerLink]="['new']" class="btn btn-light"><img src="assets/open-iconic/svg/plus.svg"/> New Room</button>
   </div>
 </div>
 <div class="row">
@@ -31,8 +31,8 @@
           {{ room.capacity }}
         </td>
         <td>
-          <button type="button" [routerLink]="[room.id]" class="btn btn-warning">Edit</button>
-          <button type="button" (click)="onDelete(room.id)" class="btn btn-danger">Delete</button>
+          <button type="button" [routerLink]="[room.id]" class="btn btn-light margin-right-xs"><img src="assets/open-iconic/svg/brush.svg"/> Edit</button>
+          <button type="button" (click)="onDelete(room.id)" class="btn btn-light margin-right-xs"><img src="assets/open-iconic/svg/trash.svg"/> Delete</button>
         </td>
         <td>
           {{ room.id }}
