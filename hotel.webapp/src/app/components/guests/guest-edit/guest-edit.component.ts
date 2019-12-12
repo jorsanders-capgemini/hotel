@@ -15,7 +15,6 @@ export class GuestEditComponent implements OnInit {
   public guest: Guest;
 
   ngOnInit() {
-    this.guest = new Guest();
     const routeSub = this.route.params.subscribe(params => {
       this.guestsService.getGuest(params.id).subscribe(result => {
         this.guest = result;

@@ -16,7 +16,6 @@ export class BookingEditComponent implements OnInit {
   public bookingFormData: BookingFormData;
 
   ngOnInit() {
-    this.booking = new Booking();
     const routeSub = this.route.params.subscribe(params => {
       this.bookingsService.getBooking(params.id).subscribe(result => {
         this.booking = result;

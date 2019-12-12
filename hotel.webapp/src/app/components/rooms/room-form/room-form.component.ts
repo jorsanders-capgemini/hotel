@@ -8,7 +8,7 @@ import { RoomFormData } from 'src/app/models/fromData/room-form-data';
   templateUrl: './room-form.component.html',
   styleUrls: ['./room-form.component.scss']
 })
-export class RoomFormComponent implements OnInit, OnChanges {
+export class RoomFormComponent implements OnInit {
   @Input()
   public initialData: RoomFormData;
   @Input()
@@ -16,16 +16,14 @@ export class RoomFormComponent implements OnInit, OnChanges {
   @Output() submitEvent: EventEmitter<RoomFormData> = new EventEmitter();
   public form: FormGroup;
 
-  constructor(protected roomsService: RoomsService, private formBuilder: FormBuilder) {
+  constructor(protected roomsService: RoomsService, private formBuilder: FormBuilder) {}
+
+  ngOnInit() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       capacity: ['', [Validators.min(1), Validators.required]]
     });
-  }
-
-  ngOnInit() {}
-
-  ngOnChanges() {
+    console.log(this.initialData);
     this.form.patchValue({ ...this.initialData });
   }
 

@@ -15,7 +15,6 @@ export class RoomEditComponent implements OnInit {
   public room: Room;
 
   ngOnInit() {
-    this.room = new Room();
     const routeSub = this.route.params.subscribe(params => {
       this.roomsService.getRoom(params.id).subscribe(result => {
         this.room = result;
