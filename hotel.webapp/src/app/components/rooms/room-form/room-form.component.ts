@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RoomsService } from 'src/app/services/rooms.service';
+import { RoomFormData } from 'src/app/models/fromData/room-form-data';
 
 @Component({
   selector: 'app-room-form',
@@ -31,9 +32,4 @@ export class RoomFormComponent implements OnInit, OnChanges {
   public onSubmit() {
     this.submitEvent.emit(this.form.value);
   }
-}
-
-export class RoomFormData {
-  public name: string;
-  public capacity: number;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { BookingsService } from 'src/app/services/bookings.service';
+import { BookingFormData } from 'src/app/models/fromData/booking-form-data';
 
 @Component({
   selector: 'app-booking-form',
@@ -51,11 +52,4 @@ export class BookingFormComponent implements OnInit, OnChanges {
   public onSubmit() {
     this.submitEvent.emit(this.form.value);
   }
-}
-
-export class BookingFormData {
-  public nights: number;
-  public roomIds: number[];
-  public guestIds: number[];
-  public bookingDate: Date;
 }
