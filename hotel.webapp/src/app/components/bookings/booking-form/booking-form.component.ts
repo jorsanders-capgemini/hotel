@@ -18,7 +18,7 @@ export class BookingFormComponent implements OnInit, OnChanges {
   constructor(protected bookingsService: BookingsService, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       roomIds: this.formBuilder.array([]),
-      guestIds: [[], []],
+      guestIds: this.formBuilder.array([]),
       bookingDate: ['', [Validators.required]],
       nights: [0, [Validators.min(1), Validators.required]]
     });
@@ -28,6 +28,10 @@ export class BookingFormComponent implements OnInit, OnChanges {
     (this.form.controls.roomIds as FormArray).push(this.formBuilder.control(0));
   }
 
+  addGuestId() {
+    (this.form.controls.guestIds as FormArray).push(this.formBuilder.control(0));
+  }
+
   ngOnInit() {}
 
   ngOnChanges() {
@@ -35,7 +39,6 @@ export class BookingFormComponent implements OnInit, OnChanges {
   }
 
   public onSubmit() {
-    console.log('onSubmit');
     this.submitEvent.emit(this.form.value);
   }
 }

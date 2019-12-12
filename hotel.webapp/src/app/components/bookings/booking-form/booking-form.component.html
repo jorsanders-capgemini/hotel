@@ -1,24 +1,25 @@
 <div class="row">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <!-- <div class="form-group">
-      <label for="guestIds" class="control-label"> Guests: </label>
-      <input type="text" class="form-control" formControlName="guestIds" required />
-      <div
-        *ngIf="form.controls.guestIds.invalid && (form.controls?.guestIds.dirty || form.controls?.guestIds.touched)"
-        class="alert alert-danger"
-      >
-        <div *ngIf="form.controls.guestIds?.errors?.required">Guests is required</div>
+    <div formArrayName="guestIds">
+      <h3>Guest Ids</h3>
+      <button type="button" (click)="addGuestId()">Add guest Id</button>
+      <div *ngFor="let guestId of form.controls?.guestIds.controls; let i = index">
+        <!-- The repeated alias template -->
+        <label>
+          Guest Id:
+          <input type="number" [formControlName]="i" />
+        </label>
       </div>
-    </div> -->
+    </div>
 
     <div formArrayName="roomIds">
       <h3>Room Ids</h3>
-      <button type="button" (click)="addRoomId()">Add RoomId</button>
+      <button type="button" (click)="addRoomId()">Add Room Id</button>
 
       <div *ngFor="let roomId of form.controls?.roomIds.controls; let i = index">
         <!-- The repeated alias template -->
         <label>
-          RoomId:
+          Room Id:
           <input type="number" [formControlName]="i" />
         </label>
       </div>

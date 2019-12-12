@@ -19,6 +19,9 @@
         <th>
           Actions
         </th>
+        <th>
+          Id
+        </th>
       </tr>
       <tr *ngFor="let guest: of guests$ | async">
         <td>
@@ -30,6 +33,9 @@
         <td>
           <button type="button" [routerLink]="[guest.id]" class="btn btn-warning">Edit</button>
           <button type="button" (click)="onDelete(guest.id)" class="btn btn-danger">Delete</button>
+        </td>
+        <td>
+          {{ guest.id }}
         </td>
       </tr>
     </table>

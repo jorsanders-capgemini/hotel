@@ -25,7 +25,11 @@
       </tr>
       <tr *ngFor="let booking: of bookings$ | async">
         <td>
-          {{ booking.guests | json }}
+          <ul>
+            <li *ngFor="let guest: of booking.guests">
+              {{guest.name}}
+            </li>
+          </ul>
         </td>
         <td>         
           <ul>
