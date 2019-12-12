@@ -13,12 +13,19 @@ export class BookingEditComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private bookingsService: BookingsService) {}
 
   public booking: Booking;
+  public bookingFormData: BookingFormData;
 
   ngOnInit() {
     this.booking = new Booking();
     const routeSub = this.route.params.subscribe(params => {
       this.bookingsService.getBooking(params.id).subscribe(result => {
         this.booking = result;
+        this.bookingFormData = {
+          nights: result.nights,
+          bookingDate: new Date(result.bookingDate),
+          guestIds: result.guests.map(guest => guest.id),
+          roomIds: result.rooms.map(room => room.id)
+        };
       });
     });
     routeSub.unsubscribe();

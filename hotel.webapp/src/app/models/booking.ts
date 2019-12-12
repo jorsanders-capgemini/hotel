@@ -6,4 +6,5 @@ export class Booking {
   public guests: Guest[];
   public rooms: Room[];
   public nights: number;
+  public bookingDate: Date;
 }

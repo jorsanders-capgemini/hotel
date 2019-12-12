@@ -2,7 +2,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div formArrayName="guestIds">
       <label>Guest Ids</label>
-      <button type="button" class="btn btn-light" (click)="addGuestId()"><img src="assets/open-iconic/svg/plus.svg"/> Add guest Id</button>
+      <button type="button" class="btn btn-light" (click)="addGuestId()"><img src="assets/open-iconic/svg/plus.svg" /> Add guest Id</button>
       <div *ngFor="let guestId of form.controls?.guestIds.controls; let i = index">
         <!-- The repeated alias template -->
         <label>
@@ -14,7 +14,7 @@
 
     <div formArrayName="roomIds">
       <label>Room Ids</label>
-      <button type="button" class="btn btn-light" (click)="addRoomId()"><img src="assets/open-iconic/svg/plus.svg"/> Add Room Id</button>
+      <button type="button" class="btn btn-light" (click)="addRoomId()"><img src="assets/open-iconic/svg/plus.svg" /> Add Room Id</button>
 
       <div *ngFor="let roomId of form.controls?.roomIds.controls; let i = index">
         <!-- The repeated alias template -->
@@ -39,7 +39,7 @@
 
     <div class="form-group">
       <label for="roomIds" class="control-label"> BookingDate: </label>
-      <input data-provide="datepicker" type="datetime-local" class="form-control" formControlName="bookingDate" required />
+      <input type="datetime-local" class="form-control" formControlName="bookingDate" required />
       <div
         *ngIf="form.controls.bookingDate.invalid && (form.controls?.roomIds.dirty || form.controls?.bookingDate.touched)"
         class="alert alert-danger"

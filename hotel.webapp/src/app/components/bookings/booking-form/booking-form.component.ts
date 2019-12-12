@@ -35,7 +35,17 @@ export class BookingFormComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges() {
-    this.form.patchValue({ ...this.initialData });
+    if (!this.initialData) {
+      return;
+    }
+
+    this.initialData.guestIds.forEach(guestId => {
+      (this.form.controls.guestIds as FormArray).push(this.formBuilder.control(guestId));
+    });
+    this.initialData.roomIds.forEach(roomId => {
+      (this.form.controls.roomIds as FormArray).push(this.formBuilder.control(roomId));
+    });
+    this.form.patchValue({ nights: this.initialData.nights, bookingDate: this.initialData.bookingDate.toISOString().substring(0, 16) });
   }
 
   public onSubmit() {
@@ -44,7 +54,7 @@ export class BookingFormComponent implements OnInit, OnChanges {
 }
 
 export class BookingFormData {
-  public name: string;
+  public nights: number;
   public roomIds: number[];
   public guestIds: number[];
   public bookingDate: Date;
