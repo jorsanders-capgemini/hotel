@@ -1,5 +1,5 @@
 export class Room {
-  id: number;
-  name: string;
-  capacity: number;
+  public id: number;
+  public name: string;
+  public capacity: number;
 }

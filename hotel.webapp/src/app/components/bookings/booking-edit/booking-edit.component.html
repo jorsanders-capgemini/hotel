@@ -1,0 +1,6 @@
+<app-booking-form
+  *ngIf="bookingFormData"
+  [initialData]="bookingFormData"
+  buttonText="Save"
+  (submitEvent)="onSubmit($event)"
+></app-booking-form>

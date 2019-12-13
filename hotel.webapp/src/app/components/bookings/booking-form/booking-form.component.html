@@ -1,0 +1,53 @@
+<div class="row">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div formArrayName="guestIds">
+      <label>Guest Ids</label>
+      <button type="button" class="btn btn-light" (click)="addGuestId()"><img src="assets/open-iconic/svg/plus.svg" /> Add guest Id</button>
+      <div *ngFor="let guestId of form.controls?.guestIds.controls; let i = index">
+        <!-- The repeated alias template -->
+        <label>
+          Guest Id:
+          <input type="number" [formControlName]="i" />
+        </label>
+      </div>
+    </div>
+
+    <div formArrayName="roomIds">
+      <label>Room Ids</label>
+      <button type="button" class="btn btn-light" (click)="addRoomId()"><img src="assets/open-iconic/svg/plus.svg" /> Add Room Id</button>
+
+      <div *ngFor="let roomId of form.controls?.roomIds.controls; let i = index">
+        <!-- The repeated alias template -->
+        <label>
+          Room Id:
+          <input type="number" [formControlName]="i" />
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nights" class="control-label"> Nights: </label>
+      <input type="number" class="form-control" formControlName="nights" required />
+      <div
+        *ngIf="form.controls?.nights.invalid && (form.controls?.nights.dirty || form.controls?.nights.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="form.controls.nights?.errors?.min">Nights has a minimum {{ form.controls.nights?.errors?.min.min }}</div>
+        <div *ngIf="form.controls.nights?.errors?.required">Nights is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="roomIds" class="control-label"> BookingDate: </label>
+      <input type="datetime-local" class="form-control" formControlName="bookingDate" required />
+      <div
+        *ngIf="form.controls.bookingDate.invalid && (form.controls?.roomIds.dirty || form.controls?.bookingDate.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="form.controls.bookingDate?.errors?.required">BookingDate is required</div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{ buttonText }}</button>
+  </form>
+</div>

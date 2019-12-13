@@ -1,0 +1,24 @@
+<div class="row">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name" class="control-label"> Name: </label>
+      <input type="text" class="form-control" formControlName="name" required />
+      <div *ngIf="form.controls.name.invalid && (form.controls?.name.dirty || form.controls?.name.touched)" class="alert alert-danger">
+        <div *ngIf="form.controls.name?.errors?.required">Name is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="capacity" class="control-label"> Capacity: </label>
+      <input type="number" class="form-control" formControlName="capacity" required />
+      <div
+        *ngIf="form.controls?.capacity.invalid && (form.controls?.capacity.dirty || form.controls?.capacity.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="form.controls.capacity?.errors?.min">Capacity has a minimum {{ form.controls.capacity?.errors?.min.min }}</div>
+        <div *ngIf="form.controls.capacity?.errors?.required">Capacity is required</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{ buttonText }}</button>
+  </form>
+</div>
