@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Room } from 'src/app/models/room';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { Router } from '@angular/router';
-import { RoomFormData } from '../room-form/room-form.component';
+import { RoomFormData } from 'src/app/models/fromData/room-form-data';
 
 @Component({
   selector: 'app-room-create',

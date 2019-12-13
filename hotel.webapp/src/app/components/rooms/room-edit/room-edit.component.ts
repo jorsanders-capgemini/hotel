@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Room } from 'src/app/models/room';
-import { RoomFormData } from '../room-form/room-form.component';
+import { RoomFormData } from 'src/app/models/fromData/room-form-data';
 
 @Component({
   selector: 'app-room-edit',
@@ -15,7 +15,6 @@ export class RoomEditComponent implements OnInit {
   public room: Room;
 
   ngOnInit() {
-    this.room = new Room();
     const routeSub = this.route.params.subscribe(params => {
       this.roomsService.getRoom(params.id).subscribe(result => {
         this.room = result;
