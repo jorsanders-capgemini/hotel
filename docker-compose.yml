@@ -10,8 +10,9 @@ services:
         OPENJDKVERSION: "${OPENJDKVERSION}"
     volumes:
       - "./hotel.api:/app"
+      - "./dockerfiles/openjdk/entrypoint.sh:/usr/entrypoint.sh"
     working_dir: '/app'
-    entrypoint: 'java -jar target/hotel-0.0.1.jar com.jor.hotel.HotelApplication'
+    entrypoint: 'sh /usr/entrypoint.sh'
     ports:
       - "8082:8082"
       - "5005:5005"
