@@ -48,7 +48,6 @@ import { BookingListComponent } from './components/bookings/booking-list/booking
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],
