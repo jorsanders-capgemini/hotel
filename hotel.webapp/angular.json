@@ -63,7 +63,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "hotel:build",
-            "port": 8081
+            "port": 8080
           },
           "configurations": {
             "production": {

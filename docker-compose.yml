@@ -21,6 +21,22 @@ services:
       - 'mysql'
     networks:
       static-network:
+  angularwebapp:
+    container_name: "${PROJECTNAME}-angularwebapp-${NODEJSVERSION}"
+    build:
+      context: "./dockerfiles/angular"
+      dockerfile: "Dockerfile"
+      args:
+        NODEJSVERSION: "${NODEJSVERSION}"
+    volumes:
+      - "./hotel.webapp:/app"
+    working_dir: '/app'
+    ports:
+      - "${ANGULARPORT}:8080"
+    depends_on:
+      - 'mysql'
+    networks:
+      static-network:
   mysql:
     container_name: "${PROJECTNAME}-mysql-${MYSQLVERSION}"
     image: "mysql:${MYSQLVERSION}"
