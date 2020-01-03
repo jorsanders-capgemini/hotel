@@ -2,25 +2,25 @@ version: '3.7'
 
 services:
   springapi:
-    container_name: "${PROJECTNAME}-openjdk-${OPENJDKVERSION}"
+    container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
     build:
       context: "./dockerfiles/openjdk"
       dockerfile: "Dockerfile"
       args:
         OPENJDKVERSION: "${OPENJDKVERSION}"
+        MAVENVERSION: "${MAVENVERSION}"
     volumes:
       - "./hotel.api:/app"
       - "./dockerfiles/openjdk/entrypoint.sh:/usr/entrypoint.sh"
     working_dir: '/app'
     entrypoint: 'sh /usr/entrypoint.sh'
     ports:
-      - "8082:8082"
-      - "5005:5005"
+      - "${SPRINGAPIPORT}:8080"
+      - "${SPRINGDEBUGPORT}:5005"
     depends_on:
       - 'mysql'
     networks:
       static-network:
-        ipv4_address: "${IPV4ADDRESS}.5"
   mysql:
     container_name: "${PROJECTNAME}-mysql-${MYSQLVERSION}"
     image: "mysql:${MYSQLVERSION}"
@@ -32,13 +32,9 @@ services:
       - "MYSQL_USER=${DBUSER}"
       - "MYSQL_PASSWORD=${DBPASS}"
     ports:
-      - "3306:3306"
+      - "${MYSQLPORT}:3306"
     networks:
       static-network:
-        ipv4_address: "${IPV4ADDRESS}.7"
 networks:
   static-network:
     name: "${PROJECTNAME}-static-network"
-    ipam:
-      config:
-        - subnet: "${IPV4ADDRESS}.0/28"
