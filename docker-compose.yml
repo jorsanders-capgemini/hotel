@@ -11,12 +11,12 @@ services:
         MAVENVERSION: "${MAVENVERSION}"
     volumes:
       - "./hotel.api:/app"
-      - "./dockerfiles/openjdk/entrypoint.sh:/usr/entrypoint.sh"
-    working_dir: '/app'
-    entrypoint: 'sh /usr/entrypoint.sh'
+      - "./dockerfiles/openjdk/entrypoint.sh:/usr/local/bin/entrypoint.sh"
     ports:
       - "${SPRINGAPIPORT}:8080"
       - "${SPRINGDEBUGPORT}:5005"
+    working_dir: '/app'
+    entrypoint: 'sh /usr/local/bin/entrypoint.sh'
     depends_on:
       - 'mysql'
     networks:
@@ -30,11 +30,13 @@ services:
         NODEJSVERSION: "${NODEJSVERSION}"
     volumes:
       - "./hotel.webapp:/app"
-    working_dir: '/app'
+      - "./dockerfiles/angular/entrypoint.sh:/usr/local/bin/entrypoint.sh"
     ports:
-      - "${ANGULARPORT}:8080"
+      - "${ANGULARPORT}:4200"
+    working_dir: '/app'
+    entrypoint: 'ng serve --host 0.0.0.0'
     depends_on:
-      - 'mysql'
+      - 'springapi'
     networks:
       static-network:
   mysql:
@@ -42,13 +44,14 @@ services:
     image: "mysql:${MYSQLVERSION}"
     volumes:
       - "./mysql-${MYSQLVERSION}:/var/lib/mysql"
+    ports:
+      - "${MYSQLPORT}:3306"
+    working_dir: "/var/lib/mysql"
     environment:
       - "MYSQL_ROOT_PASSWORD=${ROOTPASS}"
       - "MYSQL_DATABASE=${DBNAME}"
       - "MYSQL_USER=${DBUSER}"
       - "MYSQL_PASSWORD=${DBPASS}"
-    ports:
-      - "${MYSQLPORT}:3306"
     networks:
       static-network:
 networks:
