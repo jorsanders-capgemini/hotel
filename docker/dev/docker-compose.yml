@@ -2,13 +2,13 @@ version: '3.7'
 
 services:
   springapi:
-    container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
+    container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}-${ENVTYPE}"
     build:
       context: "./dockerfiles/springapi"
       dockerfile: "Dockerfile"
       args:
         OPENJDKVERSION: "${OPENJDKVERSION}"
-        MAVENVERSION: "${MAVENVERSION}"
+        MAVEN_VERSION: "${MAVENVERSION}"
     volumes:
       - "${PROJECTROOT}/hotel.api:/app"
       - "./dockerfiles/springapi/entrypoint.sh:${ENTRYPOINTMOUNT}"
@@ -22,7 +22,7 @@ services:
     networks:
       main:
   angularwebapp:
-    container_name: "${PROJECTNAME}-angularwebapp-${NODEJSVERSION}"
+    container_name: "${PROJECTNAME}-angularwebapp-${NODEJSVERSION}-${ENVTYPE}"
     build:
       context: "./dockerfiles/angularwebapp"
       dockerfile: "Dockerfile"
@@ -40,7 +40,7 @@ services:
     networks:
       main:
   mysql:
-    container_name: "${PROJECTNAME}-mysql-${MYSQLVERSION}"
+    container_name: "${PROJECTNAME}-mysql-${MYSQLVERSION}-${ENVTYPE}"
     image: "mysql:${MYSQLVERSION}"
     volumes:
       - "./mysql-${MYSQLVERSION}:/var/lib/mysql"
@@ -56,4 +56,4 @@ services:
       main:
 networks:
   main:
-    name: "${PROJECTNAME}-main-network"
+    name: "${PROJECTNAME}-${ENVTYPE}-main-network"

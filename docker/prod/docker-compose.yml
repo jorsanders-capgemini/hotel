@@ -4,18 +4,14 @@ services:
   springapi:
     container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
     build:
-      context: "./dockerfiles/springapi"
-      dockerfile: "Dockerfile"
+      context: "${PROJECTROOT}"
+      dockerfile: "docker/prod/dockerfiles/springapi/Dockerfile"
       args:
         OPENJDKVERSION: "${OPENJDKVERSION}"
-        MAVENVERSION: "${MAVENVERSION}"
-    volumes:
-      - "${PROJECTROOT}/hotel.api:/app"
-      - "./dockerfiles/springapi/entrypoint.sh:${ENTRYPOINTMOUNT}"
+        MAVEN_VERSION: "${MAVENVERSION}"
     ports:
       - "${SPRINGAPIPORT}:8080"
     working_dir: '/app'
-    entrypoint: 'sh ${ENTRYPOINTMOUNT}'
     depends_on:
       - 'mysql'
     networks:
