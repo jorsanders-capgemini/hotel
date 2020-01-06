@@ -1,3 +1,3 @@
 #!/bin/bash
 npm install
-ng serve --host 0.0.0.0
+ng serve --host 0.0.0.0 --watch

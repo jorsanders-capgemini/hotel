@@ -30,13 +30,12 @@ services:
         NODEJSVERSION: "${NODEJSVERSION}"
     volumes:
       - "./hotel.webapp:/app"
+      - "/app/node_modules"
       - "./dockerfiles/angular/entrypoint.sh:/usr/local/bin/entrypoint.sh"
     ports:
       - "${ANGULARPORT}:4200"
     working_dir: '/app'
-    entrypoint: 'ng serve --host 0.0.0.0'
-    depends_on:
-      - 'springapi'
+    entrypoint: 'sh /usr/local/bin/entrypoint.sh'
     networks:
       static-network:
   mysql:
