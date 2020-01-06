@@ -4,40 +4,41 @@ services:
   springapi:
     container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
     build:
-      context: "./dockerfiles/openjdk"
+      context: "${DOCKERFILES}/springapi"
       dockerfile: "Dockerfile"
       args:
         OPENJDKVERSION: "${OPENJDKVERSION}"
         MAVENVERSION: "${MAVENVERSION}"
     volumes:
-      - "./hotel.api:/app"
-      - "./dockerfiles/openjdk/entrypoint.sh:/usr/local/bin/entrypoint.sh"
+      - "${PROJECTROOT}/hotel.api:/app"
+      - "${DOCKERFILES}/springapi/entrypoint.sh:${ENTRYPOINTMOUNT}"
     ports:
       - "${SPRINGAPIPORT}:8080"
       - "${SPRINGDEBUGPORT}:5005"
     working_dir: '/app'
-    entrypoint: 'sh /usr/local/bin/entrypoint.sh'
+    entrypoint: 'sh ${ENTRYPOINTMOUNT}'
     depends_on:
       - 'mysql'
     networks:
-      static-network:
+      main:
   angularwebapp:
     container_name: "${PROJECTNAME}-angularwebapp-${NODEJSVERSION}"
     build:
-      context: "./dockerfiles/angular"
+      context: "${DOCKERFILES}/angularwebapp"
       dockerfile: "Dockerfile"
       args:
         NODEJSVERSION: "${NODEJSVERSION}"
     volumes:
-      - "./hotel.webapp:/app"
+      - "${PROJECTROOT}/hotel.webapp:/app"
+      # Empty app/node_modules
       - "/app/node_modules"
-      - "./dockerfiles/angular/entrypoint.sh:/usr/local/bin/entrypoint.sh"
+      - "${DOCKERFILES}/angularwebapp/entrypoint.sh:${ENTRYPOINTMOUNT}"
     ports:
       - "${ANGULARPORT}:4200"
     working_dir: '/app'
-    entrypoint: 'sh /usr/local/bin/entrypoint.sh'
+    entrypoint: 'sh ${ENTRYPOINTMOUNT}'
     networks:
-      static-network:
+      main:
   mysql:
     container_name: "${PROJECTNAME}-mysql-${MYSQLVERSION}"
     image: "mysql:${MYSQLVERSION}"
@@ -52,7 +53,7 @@ services:
       - "MYSQL_USER=${DBUSER}"
       - "MYSQL_PASSWORD=${DBPASS}"
     networks:
-      static-network:
+      main:
 networks:
-  static-network:
-    name: "${PROJECTNAME}-static-network"
+  main:
+    name: "${PROJECTNAME}-main-network"
