@@ -26,11 +26,11 @@ export class BookingFormComponent implements OnInit {
   }
 
   addRoomId() {
-    (this.form.controls.roomIds as FormArray).push(this.formBuilder.control(0));
+    (this.formControls.roomIds as FormArray).push(this.formBuilder.control(0));
   }
 
   addGuestId() {
-    (this.form.controls.guestIds as FormArray).push(this.formBuilder.control(0));
+    (this.formControls.guestIds as FormArray).push(this.formBuilder.control(0));
   }
 
   ngOnInit() {
@@ -39,15 +39,23 @@ export class BookingFormComponent implements OnInit {
     }
 
     this.initialData.guestIds.forEach(guestId => {
-      (this.form.controls.guestIds as FormArray).push(this.formBuilder.control(guestId));
+      (this.formControls.guestIds as FormArray).push(this.formBuilder.control(guestId));
     });
     this.initialData.roomIds.forEach(roomId => {
-      (this.form.controls.roomIds as FormArray).push(this.formBuilder.control(roomId));
+      (this.formControls.roomIds as FormArray).push(this.formBuilder.control(roomId));
     });
     this.form.patchValue({ nights: this.initialData.nights, bookingDate: this.initialData.bookingDate.toISOString().substring(0, 16) });
   }
 
   public onSubmit() {
     this.submitEvent.emit(this.form.value);
+  }
+
+  get formData() {
+    return this.form.get('Data') as FormArray;
+  }
+
+  get formControls() {
+    return this.formControls as any;
   }
 }

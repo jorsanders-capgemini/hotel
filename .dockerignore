@@ -1,0 +1,17 @@
+# Ignore everything
+*
+
+# Except these src directories
+!hotel.api/
+!hotel.webapp/
+
+# But with these
+*/node_modules/
+*/dist/
+*/.idea/
+*/.mvn/
+*/.target/
+*/.vscode/
+*/.gitignore
+*/.prettierrc
+*/.editorconfig

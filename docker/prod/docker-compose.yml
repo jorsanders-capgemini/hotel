@@ -14,7 +14,6 @@ services:
       - "./dockerfiles/springapi/entrypoint.sh:${ENTRYPOINTMOUNT}"
     ports:
       - "${SPRINGAPIPORT}:8080"
-      - "${SPRINGDEBUGPORT}:5005"
     working_dir: '/app'
     entrypoint: 'sh ${ENTRYPOINTMOUNT}'
     depends_on:
@@ -24,19 +23,14 @@ services:
   angularwebapp:
     container_name: "${PROJECTNAME}-angularwebapp-${NODEJSVERSION}"
     build:
-      context: "./dockerfiles/angularwebapp"
-      dockerfile: "Dockerfile"
+      context: "${PROJECTROOT}"
+      dockerfile: "docker/prod/dockerfiles/angularwebapp/Dockerfile"
       args:
         NODEJSVERSION: "${NODEJSVERSION}"
-    volumes:
-      - "${PROJECTROOT}/hotel.webapp:/app"
-      # Empty app/node_modules
-      - "/app/node_modules"
-      - "./dockerfiles/angularwebapp/entrypoint.sh:${ENTRYPOINTMOUNT}"
+        ANGULARROOT: "${NODEJSVERSION}"
     ports:
       - "${ANGULARPORT}:4200"
     working_dir: '/app'
-    entrypoint: 'sh ${ENTRYPOINTMOUNT}'
     networks:
       main:
   mysql:
@@ -44,8 +38,6 @@ services:
     image: "mysql:${MYSQLVERSION}"
     volumes:
       - "./mysql-${MYSQLVERSION}:/var/lib/mysql"
-    ports:
-      - "${MYSQLPORT}:3306"
     working_dir: "/var/lib/mysql"
     environment:
       - "MYSQL_ROOT_PASSWORD=${ROOTPASS}"
