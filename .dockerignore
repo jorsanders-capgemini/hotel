@@ -5,6 +5,9 @@
 !hotel.api/
 !hotel.webapp/
 
+# Except these environment configs
+!docker/prod/dockerfiles/springapi/dist.application.properties
+
 # But with these
 */node_modules/
 */dist/

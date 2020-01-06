@@ -10,4 +10,7 @@ COPY ./hotel.webapp /app
 WORKDIR /app
 
 RUN npm install
+
+# TODO: ng build and copy only the dist files to an apache server
+
 CMD ng serve --prod --host 0.0.0.0
