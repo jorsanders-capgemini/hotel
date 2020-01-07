@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  springapi:
+    container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
+    build:
+      context: "${PROJECTROOT}"
+      dockerfile: "docker/build/dockerfiles/springapi/Dockerfile"
+      args:
+        OPENJDKVERSION: "${OPENJDKVERSION}"
+        MAVEN_VERSION: "${MAVENVERSION}"
+    working_dir: '/app'
+#    volumes:
+#    - './dist/springapi/springapi.jar:/app/target/hotel-0.0.1.jar'
+  angularwebapp:
+    container_name: "${PROJECTNAME}-angularwebapp-${NODEJSVERSION}"
+    build:
+      context: "./dockerfiles/angularwebapp"
+      dockerfile: "Dockerfile"
+      args:
+        NODEJSVERSION: "${NODEJSVERSION}"
+        ANGULARROOT: "${NODEJSVERSION}"
+    working_dir: '/app'
+    volumes:
+      - '${PROJECTROOT}/angularwebapp:/app/'
+      #- '../compiled/angularwebapp:/app/dist/hotel'

@@ -4,29 +4,26 @@ services:
   springapi:
     container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
     build:
-      context: "${PROJECTROOT}"
-      dockerfile: "docker/prod/dockerfiles/springapi/Dockerfile"
+      context: "."
+      dockerfile: "dockerfiles/springapi/Dockerfile"
       args:
         OPENJDKVERSION: "${OPENJDKVERSION}"
         MAVEN_VERSION: "${MAVENVERSION}"
     ports:
       - "${SPRINGAPIPORT}:8080"
     working_dir: '/app'
-    depends_on:
-      - 'mysql'
     networks:
       main:
   angularwebapp:
-    container_name: "${PROJECTNAME}-angularwebapp-${NODEJSVERSION}"
+    container_name: "${PROJECTNAME}-angularwebapp-${APACHEVERSION}"
     build:
-      context: "${PROJECTROOT}"
-      dockerfile: "docker/prod/dockerfiles/angularwebapp/Dockerfile"
+      context: "."
+      dockerfile: "dockerfiles/angularwebapp/Dockerfile"
       args:
-        NODEJSVERSION: "${NODEJSVERSION}"
-        ANGULARROOT: "${NODEJSVERSION}"
+        APACHEVERSION: "${APACHEVERSION}"
     ports:
-      - "${ANGULARPORT}:4200"
-    working_dir: '/app'
+      - "${ANGULARPORT}:80"
+    working_dir: '/usr/local/apache2/'
     networks:
       main:
   mysql:
