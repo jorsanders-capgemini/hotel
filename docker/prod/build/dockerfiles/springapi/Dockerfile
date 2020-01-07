@@ -2,8 +2,8 @@ ARG OPENJDKVERSION=0
 ARG ENTRYPOINTMOUNT=0
 FROM openjdk:${OPENJDKVERSION}-alpine
 
-COPY entrypoint.sh ${ENTRYPOINTMOUNT}
-ENTRYPOINT ${ENTRYPOINTMOUNT}
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT /usr/local/bin/entrypoint.sh
 
 ENV MAVEN_VERSION 3.6.3
 ENV MAVEN_HOME /usr/lib/mvn

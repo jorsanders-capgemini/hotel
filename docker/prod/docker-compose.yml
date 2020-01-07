@@ -8,10 +8,11 @@ services:
       dockerfile: "dockerfiles/springapi/Dockerfile"
       args:
         OPENJDKVERSION: "${OPENJDKVERSION}"
-        MAVEN_VERSION: "${MAVENVERSION}"
     ports:
       - "${SPRINGAPIPORT}:8080"
     working_dir: '/app'
+    depends_on:
+      - 'mysql'
     networks:
       main:
   angularwebapp:
