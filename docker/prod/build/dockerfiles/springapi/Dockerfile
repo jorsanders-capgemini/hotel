@@ -1,9 +1,8 @@
 ARG OPENJDKVERSION=0
 FROM openjdk:${OPENJDKVERSION}-alpine
 
-COPY ./hotel.api /app
-COPY ./docker/prod/dockerfiles/springapi/dist.application.properties /app/src/main/resources/application.properties
-WORKDIR /app
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT /usr/local/bin/entrypoint.sh
 
 ENV MAVEN_VERSION 3.6.3
 ENV MAVEN_HOME /usr/lib/mvn
@@ -13,5 +12,3 @@ RUN wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/ap
 RUN tar -zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz
 RUN rm apache-maven-$MAVEN_VERSION-bin.tar.gz
 RUN mv apache-maven-$MAVEN_VERSION /usr/lib/mvn
-
-RUN mvn -Dmaven.test.skip=true package

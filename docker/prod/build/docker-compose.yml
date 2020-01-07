@@ -10,6 +10,7 @@ services:
         OPENJDKVERSION: "${OPENJDKVERSION}"
         MAVEN_VERSION: "${MAVENVERSION}"
     working_dir: '/app'
+    volumes:
       - '${PROJECTROOT}/hotel.api:/app/'
       - "/app/target"
       - '../compiled/springapi:/app/compiled'
