@@ -1,5 +1,4 @@
 ARG OPENJDKVERSION=0
-ARG ENTRYPOINTMOUNT=0
 FROM openjdk:${OPENJDKVERSION}-alpine
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh

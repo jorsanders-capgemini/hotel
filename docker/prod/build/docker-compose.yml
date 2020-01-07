@@ -9,7 +9,6 @@ services:
       args:
         OPENJDKVERSION: "${OPENJDKVERSION}"
         MAVEN_VERSION: "${MAVENVERSION}"
-        ENTRYPOINTMOUNT: "${ENTRYPOINTMOUNT}"
     working_dir: '/app'
     volumes:
       - '${PROJECTROOT}/hotel.api:/app/'
@@ -23,7 +22,6 @@ services:
       dockerfile: "Dockerfile"
       args:
         NODEJSVERSION: "${NODEJSVERSION}"
-        ENTRYPOINTMOUNT: "${ENTRYPOINTMOUNT}"
     working_dir: '/app'
     volumes:
       - '${PROJECTROOT}/hotel.webapp:/app/'

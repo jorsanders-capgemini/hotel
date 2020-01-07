@@ -12,6 +12,7 @@ services:
     volumes:
       - "${PROJECTROOT}/hotel.api:/app"
       - "./dockerfiles/springapi/entrypoint.sh:${ENTRYPOINTMOUNT}"
+      - './config/springapi/application.properties:/app/src/main/java/resources/application.properties'
     ports:
       - "${SPRINGAPIPORT}:8080"
       - "${SPRINGDEBUGPORT}:5005"

@@ -2,8 +2,8 @@ ARG NODEJSVERSION=0
 ARG ENTRYPOINTMOUNT=0
 FROM node:${NODEJSVERSION}-alpine
 
-COPY entrypoint.sh ${ENTRYPOINTMOUNT}
-ENTRYPOINT ${ENTRYPOINTMOUNT}
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT /usr/local/bin/entrypoint.sh
 
 # Should speed up npm install https://github.com/npm/npm/issues/8836
 RUN npm config set registry https://registry.npmjs.org/

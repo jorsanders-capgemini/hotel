@@ -7,4 +7,6 @@ rm -rf /app/compiled/* || true
 mvn -Dmaven.test.skip=true package
 
 cp -r /app/target/* /app/compiled
+
+# Sometimes doesn't copy without this last ls statement
 ls /app/compiled

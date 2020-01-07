@@ -10,3 +10,6 @@ rm -rf /app/compiled/* || true
 npm install
 ng build --prod
 cp -r /app/dist/hotel/* /app/compiled
+
+# Sometimes doesn't copy without this last ls statement
+ls /app/compiled
