@@ -6,7 +6,7 @@ rm -rf /app/dist/hotel/* || true
 # this will give warnings in the console but cant fixed easily
 find /app/compiled/* -delete || true
 cd /app/compiled rm -rf /app/compiled/* || true
-#
-#npm install
-#ng build --prod
-#cp -r /app/dist/hotel/* /app/compiled
+
+npm install
+ng build --prod
+cp -r /app/dist/hotel/* /app/compiled
