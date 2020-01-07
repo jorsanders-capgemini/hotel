@@ -2,3 +2,4 @@
 */mysql-*/
 *.env
 !DIST.env
+/prod/springapi/application.properties

@@ -30,7 +30,6 @@ services:
         NODEJSVERSION: "${NODEJSVERSION}"
     volumes:
       - "${PROJECTROOT}/hotel.webapp:/app"
-      # Empty app/node_modules
       - "/app/node_modules"
       - "./dockerfiles/angularwebapp/entrypoint.sh:${ENTRYPOINTMOUNT}"
     ports:
