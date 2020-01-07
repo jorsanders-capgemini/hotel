@@ -6,6 +6,8 @@
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
+# My docker build directory
+/compiled
 
 # dependencies
 /node_modules

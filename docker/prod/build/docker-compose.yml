@@ -4,14 +4,15 @@ services:
   springapi:
     container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
     build:
-      context: "${PROJECTROOT}"
-      dockerfile: "docker/build/dockerfiles/springapi/Dockerfile"
+      context: "dockerfiles/springapi"
+      dockerfile: "Dockerfile"
       args:
         OPENJDKVERSION: "${OPENJDKVERSION}"
         MAVEN_VERSION: "${MAVENVERSION}"
     working_dir: '/app'
-#    volumes:
-#    - './dist/springapi/springapi.jar:/app/target/hotel-0.0.1.jar'
+      - '${PROJECTROOT}/hotel.api:/app/'
+      - "/app/target"
+      - '../compiled/springapi:/app/compiled'
   angularwebapp:
     container_name: "${PROJECTNAME}-angularwebapp-${NODEJSVERSION}"
     build:
@@ -19,8 +20,8 @@ services:
       dockerfile: "Dockerfile"
       args:
         NODEJSVERSION: "${NODEJSVERSION}"
-        ANGULARROOT: "${NODEJSVERSION}"
     working_dir: '/app'
     volumes:
-      - '${PROJECTROOT}/angularwebapp:/app/'
-      #- '../compiled/angularwebapp:/app/dist/hotel'
+      - '${PROJECTROOT}/hotel.webapp:/app/'
+      - "/app/node_modules"
+      - '../compiled/angularwebapp:/app/compiled'
