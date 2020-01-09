@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  springapi:
+    container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
+    build:
+      context: 'dockerfiles/springapi'
+      dockerfile: 'Dockerfile'
+      args:
+        OPENJDKVERSION: "${OPENJDKVERSION}"
+        MAVEN_VERSION: "${MAVENVERSION}"
+    working_dir: '/app'
+    volumes:
+      - "${PROJECTROOT}/springapi:/app/"
+      - '../config/springapi/application.properties:/app/src/main/resources/application.properties'
+      - '/app/target'
+      - '../compiled/springapi:/app/compiled:consistent'
+  angularwebapp:
+    container_name: "${PROJECTNAME}-angularwebapp-${NODEJSVERSION}"
+    build:
+      context: './dockerfiles/angularwebapp'
+      dockerfile: 'Dockerfile'
+      args:
+        NODEJSVERSION: "${NODEJSVERSION}"
+    working_dir: '/app'
+    volumes:
+      - "${PROJECTROOT}/angularwebapp:/app/"
+      - '/app/node_modules'
+      - '../compiled/angularwebapp:/app/compiled:consistent'
