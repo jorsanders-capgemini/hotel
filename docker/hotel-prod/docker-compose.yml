@@ -4,8 +4,8 @@ services:
   springapi:
     container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
     build:
-      context: "."
-      dockerfile: "dockerfiles/springapi/Dockerfile"
+      context: '.'
+      dockerfile: 'dockerfiles/springapi/Dockerfile'
       args:
         OPENJDKVERSION: "${OPENJDKVERSION}"
     ports:
@@ -16,10 +16,10 @@ services:
     networks:
       main:
   angularwebapp:
-    container_name: "${PROJECTNAME}-angularwebapp-${APACHEVERSION}"
+    container_name: '${PROJECTNAME}-angularwebapp-${APACHEVERSION}'
     build:
-      context: "."
-      dockerfile: "dockerfiles/angularwebapp/Dockerfile"
+      context: '.'
+      dockerfile: 'dockerfiles/angularwebapp/Dockerfile'
       args:
         APACHEVERSION: "${APACHEVERSION}"
     ports:
@@ -29,10 +29,10 @@ services:
       main:
   mysql:
     container_name: "${PROJECTNAME}-mysql-${MYSQLVERSION}"
-    image: "mysql:${MYSQLVERSION}"
+    image: 'mysql:${MYSQLVERSION}'
     volumes:
       - "./mysql-${MYSQLVERSION}:/var/lib/mysql"
-    working_dir: "/var/lib/mysql"
+    working_dir: '/var/lib/mysql'
     environment:
       - "MYSQL_ROOT_PASSWORD=${ROOTPASS}"
       - "MYSQL_DATABASE=${DBNAME}"

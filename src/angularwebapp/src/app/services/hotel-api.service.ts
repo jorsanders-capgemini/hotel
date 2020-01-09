@@ -13,7 +13,7 @@ export class HotelApiService {
     // TODO: set authentication headers
   }
 
-  private readonly API_URL = 'http://localhost:8082/api';
+  private readonly API_URL = 'http://localhost:8080/api';
 
   public doPutRequest<T>(endpoint: string, body: any) {
     return this.httpClient.put<T>(this.API_URL + endpoint, body, { headers: this.headers });

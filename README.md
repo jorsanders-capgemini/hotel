@@ -7,9 +7,14 @@ These techniques include:
 - NgRx
 - Unit testing
 - Azure Pipelines
+- Docker
 
 # Setup
 
-0. Start the MySQL server in a docker container. `docker-compose up`
-0. Start the hotel.api - See readme in directory
-0. Start the hotel.webapp - See readme in directory
+See the `docker/` folder for setups with docker.
+
+# Tested environment
+
+OS: Windows 10 pro
+Springapi IDE: InteliJ CE
+Angularwebapp IDE: Visual Studio Code
