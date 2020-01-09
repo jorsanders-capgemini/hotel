@@ -54,4 +54,8 @@ export class BookingFormComponent implements OnInit {
   get formData() {
     return this.form.get('Data') as FormArray;
   }
+
+  get formControls() {
+    return this.form.controls as any;
+  }
 }
