@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # rm -rf doesn't work for some reason on nested not empty directories
 # So first clean out all files
 # this will give warnings in the console but cant fixed easily
