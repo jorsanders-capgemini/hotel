@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { hotelAPiServer } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class HotelApiService {
     // TODO: set authentication headers
   }
 
-  private readonly API_URL = 'http://localhost:8080/api';
+  private readonly API_URL = hotelAPiServer;
 
   public doPutRequest<T>(endpoint: string, body: any) {
     return this.httpClient.put<T>(this.API_URL + endpoint, body, { headers: this.headers });
