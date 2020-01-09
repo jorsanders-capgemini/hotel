@@ -1,0 +1,5 @@
+*/compiled/*
+*/mysql-*/
+*.env
+!DIST.env
+*/config/springapi/application.properties

@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  springapi:
+    container_name: "${PROJECTNAME}-springapi-${OPENJDKVERSION}"
+    build:
+      context: '.'
+      dockerfile: 'dockerfiles/springapi/Dockerfile'
+      args:
+        OPENJDKVERSION: "${OPENJDKVERSION}"
+    ports:
+      - "${SPRINGAPIPORT}:8080"
+    working_dir: '/app'
+    depends_on:
+      - 'mysql'
+    networks:
+      main:
+  angularwebapp:
+    container_name: '${PROJECTNAME}-angularwebapp-${APACHEVERSION}'
+    build:
+      context: '.'
+      dockerfile: 'dockerfiles/angularwebapp/Dockerfile'
+      args:
+        APACHEVERSION: "${APACHEVERSION}"
+    ports:
+      - "${ANGULARPORT}:80"
+    working_dir: '/usr/local/apache2/'
+    networks:
+      main:
+  mysql:
+    container_name: "${PROJECTNAME}-mysql-${MYSQLVERSION}"
+    image: 'mysql:${MYSQLVERSION}'
+    volumes:
+      - "./mysql-${MYSQLVERSION}:/var/lib/mysql"
+    working_dir: '/var/lib/mysql'
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${ROOTPASS}"
+      - "MYSQL_DATABASE=${DBNAME}"
+      - "MYSQL_USER=${DBUSER}"
+      - "MYSQL_PASSWORD=${DBPASS}"
+    networks:
+      main:
+networks:
+  main:
+    name: "${PROJECTNAME}-main-network"
